@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>280</y>
+      <x>168</x>
+      <y>256</y>
       <w>240</w>
       <h>88</h>
     </coordinates>
@@ -22,8 +22,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>24</x>
-      <y>464</y>
+      <x>112</x>
+      <y>440</y>
       <w>80</w>
       <h>24</h>
     </coordinates>
@@ -33,8 +33,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>112</x>
-      <y>464</y>
+      <x>200</x>
+      <y>440</y>
       <w>80</w>
       <h>24</h>
     </coordinates>
@@ -44,8 +44,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>464</y>
+      <x>288</x>
+      <y>440</y>
       <w>80</w>
       <h>24</h>
     </coordinates>
@@ -55,8 +55,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>288</x>
-      <y>464</y>
+      <x>376</x>
+      <y>440</y>
       <w>80</w>
       <h>24</h>
     </coordinates>
@@ -66,8 +66,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>56</x>
-      <y>360</y>
+      <x>144</x>
+      <y>336</y>
       <w>96</w>
       <h>120</h>
     </coordinates>
@@ -77,8 +77,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>160</x>
-      <y>360</y>
+      <x>248</x>
+      <y>336</y>
       <w>24</w>
       <h>120</h>
     </coordinates>
@@ -88,8 +88,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>208</x>
-      <y>360</y>
+      <x>296</x>
+      <y>336</y>
       <w>24</w>
       <h>120</h>
     </coordinates>
@@ -99,8 +99,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>240</x>
-      <y>360</y>
+      <x>328</x>
+      <y>336</y>
       <w>96</w>
       <h>120</h>
     </coordinates>
@@ -110,8 +110,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>312</x>
-      <y>312</y>
+      <x>400</x>
+      <y>288</y>
       <w>112</w>
       <h>24</h>
     </coordinates>
@@ -121,8 +121,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>408</x>
-      <y>280</y>
+      <x>496</x>
+      <y>256</y>
       <w>152</w>
       <h>96</h>
     </coordinates>
