@@ -23,7 +23,13 @@ public class ActiveState implements BookingState {
 	public void extend(BookingContext context) {
 		context.setState(new ActiveState());
 		System.out.println("error: this booking is already active. The booking can be extended"
-				+ "once the booking is completed");
+				+ "\n" + "once the booking is completed");
+	}
+
+	@Override
+	public void expire(BookingContext context) {
+		context.setState(new ExpiredState());
+		System.out.println("This booking is now expired");
 	}
 
 }

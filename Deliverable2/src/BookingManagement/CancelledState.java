@@ -21,5 +21,10 @@ public class CancelledState implements BookingState {
 	public void extend(BookingContext context) {
 		System.out.println("error: this booking is cancelled");
 	}
+	
+	@Override
+	public void expire(BookingContext context) {
+		System.out.println("error: this booking is cancelled");
+	}
 
 }

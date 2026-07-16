@@ -36,8 +36,12 @@ public class BookingContext {
 		state.complete(this);
 	}
 	
-	public void etend() {
+	public void extend() {
 		state.extend(this);
+	}
+	
+	public void expire() {
+		state.expire(this);
 	}
 	
 }

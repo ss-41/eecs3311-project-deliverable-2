@@ -4,10 +4,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>168</x>
-      <y>256</y>
+      <x>200</x>
+      <y>248</y>
       <w>240</w>
-      <h>88</h>
+      <h>104</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 /BookingState/
@@ -16,13 +16,14 @@
 /+ cancel(context: BookingContext): void/
 /+ complete(context: BookingContext): void/
 /+ extend(context: BookingContext): void/
+/+ expire(context: BookingContext): void/
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>112</x>
+      <x>144</x>
       <y>440</y>
       <w>80</w>
       <h>24</h>
@@ -33,7 +34,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
+      <x>232</x>
       <y>440</y>
       <w>80</w>
       <h>24</h>
@@ -44,7 +45,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>288</x>
+      <x>320</x>
       <y>440</y>
       <w>80</w>
       <h>24</h>
@@ -55,7 +56,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>376</x>
+      <x>408</x>
       <y>440</y>
       <w>80</w>
       <h>24</h>
@@ -66,51 +67,51 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>144</x>
-      <y>336</y>
+      <x>176</x>
+      <y>344</y>
       <w>96</w>
-      <h>120</h>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>100.0;10.0;100.0;70.0;10.0;70.0;10.0;130.0</additional_attributes>
+    <additional_attributes>100.0;10.0;100.0;60.0;10.0;60.0;10.0;120.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>248</x>
-      <y>336</y>
+      <x>280</x>
+      <y>344</y>
       <w>24</w>
-      <h>120</h>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>296</x>
-      <y>336</y>
-      <w>24</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>328</x>
-      <y>336</y>
-      <w>96</w>
-      <h>120</h>
+      <y>344</y>
+      <w>24</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0;100.0;70.0;100.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>400</x>
+      <x>360</x>
+      <y>344</y>
+      <w>96</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;100.0;60.0;100.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
       <y>288</y>
       <w>112</w>
       <h>24</h>
@@ -121,10 +122,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>496</x>
-      <y>256</y>
+      <x>528</x>
+      <y>248</y>
       <w>152</w>
-      <h>96</h>
+      <h>104</h>
     </coordinates>
     <panel_attributes>BookingContext
 --
@@ -133,7 +134,8 @@
 + request(): void
 + cancel(): void
 + complete(): void
-+ extend(): void</panel_attributes>
++ extend(): void
++ expire(): void</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

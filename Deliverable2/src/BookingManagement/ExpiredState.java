@@ -24,4 +24,9 @@ public class ExpiredState implements BookingState {
 		System.out.println("error: this booking is expired so it cannot be extended");
 	}
 	
+	@Override
+	public void expire(BookingContext context) {
+		System.out.println("error: this booking is already expired");
+	}
+	
 }

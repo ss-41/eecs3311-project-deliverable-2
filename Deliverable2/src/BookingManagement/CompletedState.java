@@ -24,4 +24,10 @@ public class CompletedState implements BookingState {
 		System.out.println("This booking is extended and now active again");
 	}
 	
+	@Override
+	public void expire(BookingContext context) {
+		context.setState(new ExpiredState());
+		System.out.println("This booking is now expired");
+	}
+	
 }
