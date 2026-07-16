@@ -28,5 +28,16 @@ public class BookingContext {
 		state.handleRequest();
 	}
 	
-
+	public void cancel() {
+		state.cancel(this);
+	}
+	
+	public void complete() {
+		state.complete(this);
+	}
+	
+	public void etend() {
+		state.extend(this);
+	}
+	
 }

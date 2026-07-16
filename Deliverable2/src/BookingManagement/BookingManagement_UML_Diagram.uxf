@@ -122,15 +122,18 @@
     <id>UMLClass</id>
     <coordinates>
       <x>408</x>
-      <y>296</y>
+      <y>280</y>
       <w>152</w>
-      <h>56</h>
+      <h>96</h>
     </coordinates>
     <panel_attributes>BookingContext
 --
 - state: BookingState
 --
-+ request(): void</panel_attributes>
++ request(): void
++ cancel(): void
++ complete(): void
++ extend(): void</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
