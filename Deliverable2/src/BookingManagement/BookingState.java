@@ -7,4 +7,5 @@ public interface BookingState {
 	public void complete(BookingContext context);
 	public void extend(BookingContext context);
 	public void expire(BookingContext context);
+	
 }

@@ -3,13 +3,16 @@ package BookingManagement;
 /*
  * Client code for BookingManagement
  */
-public class BookingManagementMain {
+public class Main {
 
 	public static void main(String[] args) {
 		BookingContext bookingContext = new BookingContext();
-		BookingContext bookingContext2 = new BookingContext();
 		
-		bookingContext.request(); // initial state is active
+		bookingContext.request(); // initial state is expired
+		System.out.println();
+		
+		bookingContext.setState(new ActiveState()); // set to active state
+		bookingContext.request();
 		System.out.println();
 		
 		bookingContext.extend(); // active booking cannot be extended as it already active
@@ -33,16 +36,17 @@ public class BookingManagementMain {
 		System.out.println();
 		
 		System.out.println("-------------------------------------------------------");
-		bookingContext2.request(); // initial state is active
+		bookingContext.setState(new ActiveState()); // set to active state
+		bookingContext.request();
 		System.out.println();
 		
-		bookingContext2.expire(); // active state to expired state
-		bookingContext2.request();
+		bookingContext.expire(); // active state to expired state
+		bookingContext.request();
 		System.out.println();
 		
-		bookingContext2.extend(); // expired booking cannot be extended
-		bookingContext2.request();
-		System.out.println();
+		bookingContext.extend(); // expired booking cannot be extended
+		bookingContext.request();
+		
 	}
 
 }

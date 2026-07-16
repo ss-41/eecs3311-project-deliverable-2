@@ -6,10 +6,11 @@ public class BookingContext {
 	private BookingState state; // current state
 	
 	/*
-	 * Default constructor to initialize current state to active by default
+	 * Default constructor to initialize current state to expired
+	 * until it is first set to active 
 	 */
 	public BookingContext() {
-		state = new ActiveState();
+		state = new ExpiredState();
 	}
 	
 	public void setState(BookingState state) {

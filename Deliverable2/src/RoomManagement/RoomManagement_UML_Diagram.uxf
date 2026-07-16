@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1.0">
-  <zoom_level>8</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>56</x>
-      <y>296</y>
-      <w>240</w>
-      <h>104</h>
+      <x>42</x>
+      <y>182</y>
+      <w>231</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
-/BookingState/
+/RoomState/
 --
 /+ handleRequest(): void/
-/+ cancel(context: BookingContext): void/
-/+ complete(context: BookingContext): void/
-/+ extend(context: BookingContext): void/
-/+ expire(context: BookingContext): void/
+/+ enable(context: RoomContext): void/
+/+ disable(context: RoomContext): void/
+/+ startMaintenance(context: RoomContext): void/
+/+ endMaintenance(context: RoomContext): void/
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -24,53 +24,53 @@
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>488</y>
-      <w>80</w>
-      <h>24</h>
+      <y>350</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>ActiveState</panel_attributes>
+    <panel_attributes>AvailableState</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>88</x>
-      <y>488</y>
-      <w>80</w>
-      <h>24</h>
+      <x>77</x>
+      <y>350</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>CompletedState</panel_attributes>
+    <panel_attributes>OccupiedState</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>176</x>
-      <y>488</y>
-      <w>80</w>
-      <h>24</h>
+      <x>154</x>
+      <y>350</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>CancelledState</panel_attributes>
+    <panel_attributes>DisabledState</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>264</x>
-      <y>488</y>
-      <w>80</w>
-      <h>24</h>
+      <x>231</x>
+      <y>350</y>
+      <w>91</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>ExpiredState</panel_attributes>
+    <panel_attributes>MaintenanceState</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>32</x>
-      <y>392</y>
-      <w>96</w>
-      <h>112</h>
+      <x>28</x>
+      <y>266</y>
+      <w>84</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>100.0;10.0;100.0;60.0;10.0;60.0;10.0;120.0</additional_attributes>
@@ -78,10 +78,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>136</x>
-      <y>392</y>
-      <w>24</w>
-      <h>112</h>
+      <x>119</x>
+      <y>266</y>
+      <w>21</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
@@ -89,10 +89,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>184</x>
-      <y>392</y>
-      <w>24</w>
-      <h>112</h>
+      <x>161</x>
+      <y>266</y>
+      <w>21</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
@@ -100,10 +100,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>216</x>
-      <y>392</y>
-      <w>96</w>
-      <h>112</h>
+      <x>189</x>
+      <y>266</y>
+      <w>84</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0;100.0;60.0;100.0;120.0</additional_attributes>
@@ -111,10 +111,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>288</x>
-      <y>336</y>
-      <w>96</w>
-      <h>24</h>
+      <x>266</x>
+      <y>217</y>
+      <w>84</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
@@ -122,29 +122,30 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>368</x>
-      <y>296</y>
-      <w>152</w>
-      <h>104</h>
+      <x>336</x>
+      <y>182</y>
+      <w>133</w>
+      <h>98</h>
     </coordinates>
-    <panel_attributes>BookingContext
+    <panel_attributes>RoomContext
 --
-- state: BookingState
+- state: RoomState
 --
 + request(): void
-+ cancel(): void
-+ complete(): void
-+ extend(): void
-+ expire(): void</panel_attributes>
++ enable(): void
++ diable(): void
++ startMaintenance(): void
++ endMaintenance(): void
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>376</x>
-      <y>208</y>
-      <w>136</w>
-      <h>40</h>
+      <x>343</x>
+      <y>105</y>
+      <w>119</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>Main
 --
@@ -155,10 +156,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>240</y>
-      <w>24</w>
-      <h>72</h>
+      <x>399</x>
+      <y>133</y>
+      <w>21</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
