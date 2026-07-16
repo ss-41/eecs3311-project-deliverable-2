@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1.0">
-  <zoom_level>7</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>133</x>
-      <y>259</y>
-      <w>112</w>
-      <h>49</h>
+      <x>80</x>
+      <y>280</y>
+      <w>240</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 /BookingState/
 --
 /+ handleRequest(): void/
+/+ cancel(context: BookingContext): void/
+/+ complete(context: BookingContext): void/
+/+ extend(context: BookingContext): void/
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>42</x>
-      <y>406</y>
-      <w>70</w>
-      <h>21</h>
+      <x>24</x>
+      <y>464</y>
+      <w>80</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>ActiveState</panel_attributes>
     <additional_attributes/>
@@ -30,10 +33,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>119</x>
-      <y>406</y>
-      <w>70</w>
-      <h>21</h>
+      <x>112</x>
+      <y>464</y>
+      <w>80</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>CompletedState</panel_attributes>
     <additional_attributes/>
@@ -41,10 +44,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>196</x>
-      <y>406</y>
-      <w>70</w>
-      <h>21</h>
+      <x>200</x>
+      <y>464</y>
+      <w>80</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>CancelledState</panel_attributes>
     <additional_attributes/>
@@ -52,10 +55,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>273</x>
-      <y>406</y>
-      <w>70</w>
-      <h>21</h>
+      <x>288</x>
+      <y>464</y>
+      <w>80</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>ExpiredState</panel_attributes>
     <additional_attributes/>
@@ -63,69 +66,69 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>70</x>
-      <y>301</y>
-      <w>84</w>
-      <h>119</h>
+      <x>56</x>
+      <y>360</y>
+      <w>96</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>100.0;10.0;100.0;70.0;10.0;70.0;10.0;150.0</additional_attributes>
+    <additional_attributes>100.0;10.0;100.0;70.0;10.0;70.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>161</x>
-      <y>301</y>
-      <w>21</w>
-      <h>119</h>
+      <x>160</x>
+      <y>360</y>
+      <w>24</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>203</x>
-      <y>301</y>
-      <w>21</w>
-      <h>119</h>
+      <x>208</x>
+      <y>360</y>
+      <w>24</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>231</x>
-      <y>301</y>
-      <w>84</w>
-      <h>119</h>
+      <x>240</x>
+      <y>360</y>
+      <w>96</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0;100.0;70.0;100.0;150.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;100.0;70.0;100.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>238</x>
-      <y>280</y>
-      <w>154</w>
-      <h>21</h>
+      <x>312</x>
+      <y>312</y>
+      <w>112</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>200.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>378</x>
-      <y>266</y>
-      <w>133</w>
-      <h>49</h>
+      <x>408</x>
+      <y>296</y>
+      <w>152</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>BookingContext
 --
-- currentState: BookingState
+- state: BookingState
 --
 + request(): void</panel_attributes>
     <additional_attributes/>
