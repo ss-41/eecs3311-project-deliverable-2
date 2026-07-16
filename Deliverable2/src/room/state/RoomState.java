@@ -1,4 +1,4 @@
-package RoomManagement;
+package room.state;
 
 public interface RoomState {
 	
@@ -11,6 +11,5 @@ public interface RoomState {
 	public void enable(RoomContext context);
 	public void disable(RoomContext context);
 	public void startMaintenance(RoomContext context);
-	public void endMaintenance(RoomContext context);
 	
 }

@@ -1,16 +1,14 @@
-package BookingManagement;
+package booking.state;
 
 public class BookingContext {
 	
-	// private Room room; // references the room associated with the booking
 	private BookingState state; // current state
 	
 	/*
-	 * Default constructor to initialize current state to expired
-	 * until it is first set to active 
+	 * Default constructor to initialize current state to active
 	 */
 	public BookingContext() {
-		state = new ExpiredState();
+		state = new ActiveState();
 	}
 	
 	public void setState(BookingState state) {

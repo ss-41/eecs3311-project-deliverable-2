@@ -4,10 +4,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>42</x>
+      <x>56</x>
       <y>182</y>
-      <w>231</w>
-      <h>91</h>
+      <w>217</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 /RoomState/
@@ -16,14 +16,13 @@
 /+ enable(context: RoomContext): void/
 /+ disable(context: RoomContext): void/
 /+ startMaintenance(context: RoomContext): void/
-/+ endMaintenance(context: RoomContext): void/
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
+      <x>14</x>
       <y>350</y>
       <w>70</w>
       <h>21</h>
@@ -34,7 +33,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>77</x>
+      <x>91</x>
       <y>350</y>
       <w>70</w>
       <h>21</h>
@@ -45,7 +44,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>154</x>
+      <x>168</x>
       <y>350</y>
       <w>70</w>
       <h>21</h>
@@ -56,7 +55,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>231</x>
+      <x>245</x>
       <y>350</y>
       <w>91</w>
       <h>21</h>
@@ -67,65 +66,65 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>28</x>
-      <y>266</y>
+      <x>42</x>
+      <y>259</y>
       <w>84</w>
-      <h>98</h>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>100.0;10.0;100.0;60.0;10.0;60.0;10.0;120.0</additional_attributes>
+    <additional_attributes>100.0;10.0;100.0;70.0;10.0;70.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>119</x>
-      <y>266</y>
+      <x>133</x>
+      <y>259</y>
       <w>21</w>
-      <h>98</h>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>161</x>
-      <y>266</y>
+      <x>175</x>
+      <y>259</y>
       <w>21</w>
-      <h>98</h>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>189</x>
-      <y>266</y>
+      <x>203</x>
+      <y>259</y>
       <w>84</w>
-      <h>98</h>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0;100.0;60.0;100.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;100.0;70.0;100.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>266</x>
       <y>217</y>
-      <w>84</w>
+      <w>98</w>
       <h>21</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>336</x>
+      <x>350</x>
       <y>182</y>
-      <w>133</w>
-      <h>98</h>
+      <w>126</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>RoomContext
 --
@@ -135,15 +134,14 @@
 + enable(): void
 + diable(): void
 + startMaintenance(): void
-+ endMaintenance(): void
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>343</x>
-      <y>105</y>
+      <x>357</x>
+      <y>112</y>
       <w>119</w>
       <h>35</h>
     </coordinates>
@@ -156,12 +154,12 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>399</x>
-      <y>133</y>
+      <x>413</x>
+      <y>140</y>
       <w>21</w>
-      <h>63</h>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

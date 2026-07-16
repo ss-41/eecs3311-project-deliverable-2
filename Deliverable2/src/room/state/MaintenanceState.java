@@ -1,4 +1,4 @@
-package RoomManagement;
+package room.state;
 
 public class MaintenanceState implements RoomState {
 
@@ -26,10 +26,4 @@ public class MaintenanceState implements RoomState {
 		System.out.println("error: this room already closed for maintenance");
 	}
 	
-	@Override
-	public void endMaintenance(RoomContext context) {
-		context.setState(new OccupiedState());
-		System.out.println("The maintenance is finished and this room is now occupied again");
-	}
-
 }

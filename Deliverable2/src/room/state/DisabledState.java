@@ -1,4 +1,4 @@
-package RoomManagement;
+package room.state;
 
 public class DisabledState implements RoomState {
 
@@ -22,11 +22,6 @@ public class DisabledState implements RoomState {
 	public void startMaintenance(RoomContext context) {
 		System.out.println("error: this room is disabled so it cannot be temporarily closed"
 				+ "\n" + "for maintenance");
-	}
-	
-	@Override
-	public void endMaintenance(RoomContext context) {
-		System.out.println("error: this room is disabled so it is not in maintenance state");
 	}
 
 }

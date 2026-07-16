@@ -1,4 +1,4 @@
-package RoomManagement;
+package room.state;
 
 public class AvailableState implements RoomState {
 
@@ -22,11 +22,6 @@ public class AvailableState implements RoomState {
 	public void startMaintenance(RoomContext context) {
 		context.setState(new MaintenanceState());
 		System.out.println("This room is now closed temporarily for repairs or maintenance");
-	}
-	
-	@Override
-	public void endMaintenance(RoomContext context) {
-		System.out.println("error: this room is available so it is not in maintenance state");
 	}
 
 }

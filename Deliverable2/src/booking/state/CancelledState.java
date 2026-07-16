@@ -1,4 +1,4 @@
-package BookingManagement;
+package booking.state;
 
 public class CancelledState implements BookingState {
 

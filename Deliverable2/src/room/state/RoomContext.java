@@ -1,4 +1,4 @@
-package RoomManagement;
+package room.state;
 
 public class RoomContext {
 	
@@ -11,6 +11,7 @@ public class RoomContext {
 		this.state = new DisabledState(); // initial state is disabled
 	}
 	
+
 	public void setState(RoomState state) {
 		this.state = state;
 	}
@@ -37,10 +38,6 @@ public class RoomContext {
 	
 	public void startMaintenance() {
 		state.startMaintenance(this);
-	}
-	
-	public void endMaintenance() {
-		state.endMaintenance(this);
 	}
 	
 }

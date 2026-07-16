@@ -1,4 +1,4 @@
-package BookingManagement;
+package booking.state;
 
 /*
  * Client code for BookingManagement
@@ -8,11 +8,7 @@ public class Main {
 	public static void main(String[] args) {
 		BookingContext bookingContext = new BookingContext();
 		
-		bookingContext.request(); // initial state is expired
-		System.out.println();
-		
-		bookingContext.setState(new ActiveState()); // set to active state
-		bookingContext.request();
+		bookingContext.request(); // initial state is active
 		System.out.println();
 		
 		bookingContext.extend(); // active booking cannot be extended as it already active
@@ -31,7 +27,7 @@ public class Main {
 		bookingContext.request();
 		System.out.println();
 		
-		bookingContext.extend(); // cancelled booking cannot be extended as it is finished
+		bookingContext.extend(); // cancelled booking cannot be extended as it is cancelled
 		bookingContext.request();
 		System.out.println();
 		

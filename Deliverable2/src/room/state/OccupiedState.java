@@ -1,4 +1,4 @@
-package RoomManagement;
+package room.state;
 
 public class OccupiedState implements RoomState {
 
@@ -9,7 +9,7 @@ public class OccupiedState implements RoomState {
 	
 	@Override
 	public void enable(RoomContext context) {
-		System.out.println("error: this room is occupied so it cannot be made available");
+		System.out.println("error: this room is occupied so it cannot be made available for others yet");
 	}
 
 	@Override
@@ -20,13 +20,8 @@ public class OccupiedState implements RoomState {
 
 	@Override
 	public void startMaintenance(RoomContext context) {
-		context.setState(new MaintenanceState());
-		System.out.println("This room is now closed temporarily for repairs or maintenance");
-	}
-	
-	@Override
-	public void endMaintenance(RoomContext context) {
-		System.out.println("error: this room is occupied so it is not in maintenance state");
+		// alternative method: use setState() to change to maintenance state while in occupied state
+		System.out.println("error: this room is occupied so it cannot be temporarily closed for repairs or maintenance");
 	}
 
 }
