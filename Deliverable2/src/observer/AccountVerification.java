@@ -26,5 +26,6 @@ public class AccountVerification implements Observer{
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 }
