@@ -2,16 +2,17 @@ package dataModels;
 
 import java.time.LocalDateTime;
 
+import booking.state.BookingState;
 import observer.Observer;
 
 public class Booking implements Observer{
 	private int bookingID;
 	private double deposit; 
-	private BookingStatus bookingStatus; 
+	private BookingState bookingStatus; 
 	private LocalDateTime bookingTime; 
 	private LocalDateTime bookingEndTime; 
 	
-	public Booking(int bookingID, double deposit, BookingStatus bookingStatus, LocalDateTime bookingTime, LocalDateTime bookingEndTime) {
+	public Booking(int bookingID, double deposit, BookingState bookingStatus, LocalDateTime bookingTime, LocalDateTime bookingEndTime) {
 		this.bookingID = bookingID; 
 		this.deposit = deposit; 
 		this.bookingStatus = bookingStatus;

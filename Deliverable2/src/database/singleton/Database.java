@@ -1,6 +1,10 @@
 package database.singleton;
 import java.util.ArrayList;
 
+import dataModels.Booking;
+import dataModels.Room;
+import dataModels.User;
+
 public class Database {
 	private static Database instance; 
 	private static String pathRooms = "";
