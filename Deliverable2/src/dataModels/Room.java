@@ -3,7 +3,6 @@ package dataModels;
 import java.util.ArrayList;
 
 import observer.Observer;
-import observer.RoomStatus;
 import observer.Subject;
 
 public class Room implements Subject{

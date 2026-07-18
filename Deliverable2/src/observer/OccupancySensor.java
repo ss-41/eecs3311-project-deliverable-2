@@ -3,6 +3,7 @@ package observer;
 import java.util.ArrayList;
 
 import dataModels.Room;
+import dataModels.RoomStatus;
 
 public class OccupancySensor extends Room{
 	private int sensorID; 
