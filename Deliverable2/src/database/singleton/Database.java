@@ -69,7 +69,7 @@ public class Database {
 			csvOutputRoom.write("roomNum");
 			csvOutputRoom.write("capacity");
 			csvOutputRoom.write("building");
-			csvOutputRoom.write("roomStatus");
+			csvOutputRoom.write("status");
 			csvOutputRoom.endRecord();
 			
 			for (Room r: rooms) {
