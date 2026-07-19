@@ -53,7 +53,7 @@ public class AccountController {
                 password,
                 studentOrOrgID,
                 accountType,
-                false
+                admin
         );
 
 
@@ -128,6 +128,7 @@ public class AccountController {
 	                        email,
 	                        password,
 	                        employeeID,
+	                        Database.getInstance().createAccountType("Staff"),
 	                        true
 	                );	
 	

@@ -375,6 +375,8 @@ public class Database {
 
                 AccountType accountType =
                         createAccountType(accountTypeName);
+                
+                boolean admin = Boolean.parseBoolean(readerUser.get("admin"));
 
                 User user = new User(
                         userID,
@@ -382,7 +384,8 @@ public class Database {
                         email,
                         password,
                         stud_OR_orgID,
-                        accountType
+                        accountType,
+                        admin
                 );
 
                 users.add(user);
