@@ -9,7 +9,6 @@ import dataModels.User;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.util.ArrayList;
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 import java.time.LocalDateTime;
@@ -248,6 +247,7 @@ public class Database {
 			csvOutputUser.write("email");
 			csvOutputUser.write("password");
 			csvOutputUser.write("stud_OR_orgID");
+			csvOutputUser.write("accountType");
 			csvOutputUser.endRecord();
 			
 			for (User u: users) {
@@ -256,6 +256,7 @@ public class Database {
 				csvOutputUser.write(u.getEmail());
 				csvOutputUser.write(u.getPassword());
 				csvOutputUser.write(u.getStud_OR_orgID());
+				csvOutputUser.write(u.getAccountType().getTypeName());
 				csvOutputUser.endRecord();
 			}
 			csvOutputUser.close();
@@ -266,7 +267,12 @@ public class Database {
 		
 	}
 	
-	//removes user from csv file 
+	public void addUser(User user) throws Exception {
+	    users.add(user);
+	    storeUsers();
+	}
+	
+	 
 	public void deleteUser(User user) {
 		User uToRemove = null;
 		for (User u: users) {
@@ -283,6 +289,52 @@ public class Database {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public int getNextUserID() {
+	    int maxID = 0;
+
+	    for (User u : users) {
+	        if (u.getUserID() > maxID) {
+	            maxID = u.getUserID();
+	        }
+	    }
+
+	    return maxID + 1;
+	}
+	
+	public boolean emailExists(String email) {
+	    if (email == null) {
+	        return false;
+	    }
+
+	    for (User user : users) {
+	        if (user.getEmail().equalsIgnoreCase(email.trim())) {
+	            return true;
+	        }
+	    }
+
+	    return false;
+	}
+	
+	public User validateLogin(String email, String password) {
+	    if (email == null || password == null) {
+	        return null;
+	    }
+
+	    for (User user : users) {
+	        boolean emailMatches =
+	                user.getEmail().equalsIgnoreCase(email.trim());
+
+	        boolean passwordMatches =
+	                user.getPassword().equals(password);
+
+	        if (emailMatches && passwordMatches) {
+	            return user;
+	        }
+	    }
+
+	    return null;
 	}
 	
 	

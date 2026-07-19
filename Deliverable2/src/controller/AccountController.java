@@ -1,42 +1,50 @@
 package controller;
 
+import account.factory.GenerateAccountFactory;
+import dataModels.AccountType;
 import dataModels.User;
-import utils.CSVUserManager;
-import dataModels.User;
+import database.singleton.Database;
 
 public class AccountController {
 
-    public boolean registerUser(
+    public User registerUser(
             String name,
             String email,
             String password,
-            String studentOrOrgID) {
+            String stud_OR_orgID,
+            AccountType accountType) throws Exception {
 
-    	if (CSVUserManager.emailExists(email)) {
-    	    return false;
-    	}
+        Database database = Database.getInstance();
 
-    	int id = CSVUserManager.getNextUserID();
+        
+        database.loadUsers();
 
-    	User user = new User(
-    	        id,
-    	        name,
-    	        email,
-    	        password,
-    	        studentOrOrgID
-    	);
+        if (database.emailExists(email)) {
+            return null;
+        }
 
-    	return CSVUserManager.saveUser(user);
+        int nextUserID = database.getNextUserID();
 
-    }
-    
-    public User login(String email, String password) {
-
-        return CSVUserManager.validateLogin(
+        User newUser = GenerateAccountFactory.createUser(
+                nextUserID,
+                name,
                 email,
-                password
+                password,
+                stud_OR_orgID,
+                accountType
         );
 
+        
+        database.addUser(newUser);
+
+        return newUser;
     }
 
+    public User login(String email, String password) throws Exception {
+        Database database = Database.getInstance();
+
+        database.loadUsers();
+
+        return database.validateLogin(email, password);
+    }
 }
