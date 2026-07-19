@@ -7,45 +7,30 @@ import java.util.ArrayList;
 
 import controller.BookingController;
 import controller.RoomController;
+import dataModels.Room;
 
 
 public class BookingPanel extends JPanel {
 
 
     private JComboBox<String> roomBox;
+    private ArrayList<Room> availableRooms;
 
-    private ArrayList<String[]> availableRooms;
-
-
-    private RoomController roomController =
-            new RoomController();
-
-
-    private BookingController bookingController =
-            new BookingController();
-
+    private final RoomController roomController = new RoomController();
+    private final BookingController bookingController = new BookingController();
 
 
     public BookingPanel(MainFrame frame) {
 
-
         setLayout(new BorderLayout());
-
-
 
         JPanel panel =
                 new JPanel(
                 new GridLayout(3,2,10,10));
 
-
-
-        roomBox =
-                new JComboBox<>();
-
+        roomBox = new JComboBox<>();
 
         loadRooms();
-
-
 
         panel.add(
                 new JLabel("Select Room")
@@ -92,13 +77,11 @@ public class BookingPanel extends JPanel {
 
 
 
-            String[] room =
+            Room room =
                     availableRooms.get(index);
 
-
-
             int roomID =
-                    Integer.parseInt(room[0]);
+                    room.getRoomID();
 
 
 
@@ -120,8 +103,6 @@ public class BookingPanel extends JPanel {
 
 
             if(success) {
-
-
                 JOptionPane.showMessageDialog(
                         this,
                         "Booking Created!"
@@ -139,20 +120,25 @@ public class BookingPanel extends JPanel {
 
     private void loadRooms() {
 
-
-        availableRooms =
-                roomController.getAvailableRooms();
+        availableRooms = roomController.getAvailableRooms();
 
 
+        if(availableRooms.isEmpty()) {
 
-        for(String[] room : availableRooms) {
+            roomBox.addItem("No rooms available");
 
+        }
+        else {
 
-            roomBox.addItem(
-                    room[1]
+            for(Room room : availableRooms) {
+
+                roomBox.addItem(
+                    room.getRoomNum()
                     + " - "
-                    + room[3]
-            );
+                    + room.getBuilding()
+                );
+
+            }
 
         }
 

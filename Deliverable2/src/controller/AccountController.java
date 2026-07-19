@@ -1,10 +1,17 @@
 package controller;
 
 import dataModels.User;
-import utils.CSVUserManager;
-import dataModels.User;
+import database.singleton.Database;
 
 public class AccountController {
+
+    private final Database database;
+
+
+    public AccountController() {
+        database = Database.getInstance();
+    }
+
 
     public boolean registerUser(
             String name,
@@ -12,30 +19,83 @@ public class AccountController {
             String password,
             String studentOrOrgID) {
 
-    	if (CSVUserManager.emailExists(email)) {
-    	    return false;
-    	}
 
-    	int id = CSVUserManager.getNextUserID();
+        try {
+            database.loadUsers();
 
-    	User user = new User(
-    	        id,
-    	        name,
-    	        email,
-    	        password,
-    	        studentOrOrgID
-    	);
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
 
-    	return CSVUserManager.saveUser(user);
+
+        // check existing email
+        for(User user : database.users) {
+
+            if(user.getEmail().equals(email)) {
+                return false;
+            }
+
+        }
+
+
+        int id = database.users.size() + 1;
+
+
+        User user = new User(
+                id,
+                name,
+                email,
+                password,
+                studentOrOrgID
+        );
+
+
+        database.users.add(user);
+
+
+        try {
+
+            database.storeUsers();
+            return true;
+
+        } catch(Exception e) {
+
+            e.printStackTrace();
+            return false;
+        }
 
     }
-    
-    public User login(String email, String password) {
 
-        return CSVUserManager.validateLogin(
-                email,
-                password
-        );
+
+
+    public User login(
+            String email,
+            String password) {
+
+
+        try {
+            database.loadUsers();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+
+        for(User user : database.users) {
+
+            if(user.getEmail().equals(email)
+                    && user.getPassword().equals(password)) {
+
+                return user;
+
+            }
+
+        }
+
+
+        return null;
 
     }
 

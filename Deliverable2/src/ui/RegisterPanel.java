@@ -5,6 +5,8 @@ import java.awt.*;
 import controller.AccountController;
 
 public class RegisterPanel extends JPanel {
+	
+	private final AccountController accountController = new AccountController();
 
     public RegisterPanel(MainFrame frame) {
 
@@ -59,9 +61,6 @@ public class RegisterPanel extends JPanel {
 
         backButton.addActionListener(e ->
                 frame.showLogin());
-
-        
-        final AccountController accountController = new AccountController();
         
         registerButton.addActionListener(e -> {
 

@@ -28,6 +28,12 @@ public class Booking implements Observer{
 	public Booking(int bookingID2, int roomID2, double deposit2, ActiveState activeState, LocalDateTime start,
 			LocalDateTime end) {
 		// TODO Auto-generated constructor stub
+		this.bookingID = bookingID;
+	    this.roomID = roomID;
+	    this.deposit = deposit;
+	    this.bookingStatus = BookingStatus.ACTIVE;
+	    this.bookingTime = start;
+	    this.bookingEndTime = end;
 	}
 
 	public void editBooking() {

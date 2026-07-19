@@ -1,11 +1,15 @@
 package ui;
 
 import javax.swing.*;
+
+import controller.RoomController;
+
 import java.awt.*;
 
 public class AdminPanel extends JPanel {
 
-
+	private RoomController roomController = new RoomController();
+	
     public AdminPanel(MainFrame frame) {
 
 
@@ -65,6 +69,34 @@ public class AdminPanel extends JPanel {
         back.addActionListener(e ->
                 frame.showPanel("DASHBOARD")
         );
+        
+        addRoom.addActionListener(e -> {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Add room functionality"
+            );
+
+        });
+        
+        enableRoom.addActionListener(e -> {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Enable room functionality"
+            );
+
+        });
+
+
+        disableRoom.addActionListener(e -> {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Disable room functionality"
+            );
+
+        });
 
     }
 

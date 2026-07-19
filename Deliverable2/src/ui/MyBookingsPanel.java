@@ -5,6 +5,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import controller.BookingController;
+import dataModels.Booking;
 
 
 public class MyBookingsPanel extends JPanel {
@@ -91,37 +92,34 @@ public class MyBookingsPanel extends JPanel {
 
     private void loadBookings() {
 
-
         bookingArea.setText("");
 
 
-
-        ArrayList<String[]> bookings =
+        ArrayList<Booking> bookings =
                 controller.getBookings();
 
 
-
-        for(String[] booking : bookings) {
+        for(Booking booking : bookings) {
 
 
             bookingArea.append(
                     "Booking ID: "
-                    + booking[0]
+                    + booking.getBookingID()
 
                     + "\nRoom ID: "
-                    + booking[1]
+                    + booking.getRoomID()
 
                     + "\nDeposit: "
-                    + booking[2]
+                    + booking.getDeposit()
 
                     + "\nStatus: "
-                    + booking[3]
+                    + booking.getBookingStatus()
 
                     + "\nStart: "
-                    + booking[4]
+                    + booking.getBookingTime()
 
                     + "\nEnd: "
-                    + booking[5]
+                    + booking.getBookingEndTime()
 
                     + "\n\n"
             );

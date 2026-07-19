@@ -5,10 +5,17 @@ import java.util.ArrayList;
 
 import booking.state.ActiveState;
 import dataModels.Booking;
-import utils.BookingCSVManager;
+import database.singleton.Database;
 
 
 public class BookingController {
+
+    private final Database database;
+
+
+    public BookingController() {
+        database = Database.getInstance();
+    }
 
 
     public boolean createBooking(
@@ -18,6 +25,17 @@ public class BookingController {
             LocalDateTime start,
             LocalDateTime end) {
 
+
+        try {
+
+            database.loadBookings();
+
+        } catch(Exception e) {
+
+            e.printStackTrace();
+            return false;
+
+        }
 
 
         Booking booking =
@@ -31,16 +49,38 @@ public class BookingController {
                 );
 
 
-        return BookingCSVManager.saveBooking(booking);
+        database.bookings.add(booking);
+
+
+        try {
+
+            database.storeBookings();
+            return true;
+
+        } catch(Exception e) {
+
+            e.printStackTrace();
+            return false;
+
+        }
 
     }
 
 
 
+    public ArrayList<Booking> getBookings() {
 
-    public ArrayList<String[]> getBookings() {
+        try {
 
-        return BookingCSVManager.loadBookings();
+            database.loadBookings();
+            return database.bookings;
+
+        } catch(Exception e) {
+
+            e.printStackTrace();
+            return new ArrayList<>();
+
+        }
 
     }
 

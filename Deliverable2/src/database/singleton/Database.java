@@ -9,7 +9,6 @@ import dataModels.User;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.util.ArrayList;
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 import java.time.LocalDateTime;
@@ -256,7 +255,32 @@ public class Database {
 	}
 	
 	
+	public ArrayList<Room> getRooms() {
+	    return rooms;
+	}
+
+	public ArrayList<User> getUsers() {
+	    return users;
+	}
+
+	public ArrayList<Booking> getBookings() {
+	    return bookings;
+	}
 	
+	public ArrayList<Room> getAvailableRooms() {
+
+	    ArrayList<Room> available = new ArrayList<>();
+
+	    for (Room room : rooms) {
+
+	        if (room.getStatus() == RoomStatus.AVAILABLE) {
+	            available.add(room);
+	        }
+
+	    }
+
+	    return available;
+	}
 	
 }
 

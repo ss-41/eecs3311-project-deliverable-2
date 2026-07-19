@@ -18,6 +18,8 @@ public class MainFrame extends JFrame {
         setSize(900, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        
+        initializeDatabase();
 
 
         cardLayout = new CardLayout();
@@ -48,6 +50,9 @@ public class MainFrame extends JFrame {
 
 
     public void showPanel(String panelName) {
+        if(panelName.equals("DASHBOARD")) {
+            dashboardPanel.refreshUser(currentUser);
+        }
         cardLayout.show(mainPanel, panelName);
     }
 
@@ -82,6 +87,25 @@ public class MainFrame extends JFrame {
     
     public DashboardPanel getDashboardPanel() {
         return dashboardPanel;
+    }
+    
+    private void initializeDatabase() {
+
+        try {
+
+            database.singleton.Database db =
+                    database.singleton.Database.getInstance();
+
+            db.loadUsers();
+            db.loadRooms();
+            db.loadBookings();
+
+        } catch(Exception e) {
+
+            e.printStackTrace();
+
+        }
+
     }
     
     
