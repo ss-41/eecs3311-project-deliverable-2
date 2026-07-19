@@ -15,7 +15,7 @@ public class Database {
 		
 	}
 	
-	private Database getInstance() {
+	public static Database getInstance() {
 		if (instance == null) {
 			instance = new Database(); 
 		}
