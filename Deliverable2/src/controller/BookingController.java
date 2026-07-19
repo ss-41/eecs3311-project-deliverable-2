@@ -121,7 +121,9 @@ public class BookingController {
     }
     
     
-    public boolean extendBooking(int bookingID) {
+    public boolean extendBooking(
+            int bookingID,
+            LocalDateTime newEndTime) {
 
         try {
 
@@ -131,12 +133,23 @@ public class BookingController {
 
                 if(booking.getBookingID() == bookingID) {
 
-                    if(booking.getBookingStatus() != dataModels.BookingStatus.ACTIVE)
+
+                    if(booking.getBookingStatus()
+                            != dataModels.BookingStatus.ACTIVE)
+
                         return false;
 
-                    booking.setBookingEndTime(
-                            booking.getBookingEndTime().plusHours(1)
-                    );
+
+
+                    if(!newEndTime.isAfter(
+                            booking.getBookingEndTime())) {
+
+                        return false;
+                    }
+
+
+
+                    booking.setBookingEndTime(newEndTime);
 
                     database.storeBookings();
 
@@ -145,8 +158,10 @@ public class BookingController {
             }
 
         } catch(Exception e) {
+
             e.printStackTrace();
         }
+
         return false;
     }
     

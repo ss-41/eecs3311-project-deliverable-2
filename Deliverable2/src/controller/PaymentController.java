@@ -47,10 +47,84 @@ public class PaymentController {
     }
 
 
-    public double calculateFee(double baseFee) {
+    public double calculateFee(int bookingID) {
 
-        return baseFee;
+        try {
 
+            database.loadBookings();
+            database.loadUsers();
+
+
+            Booking booking = null;
+
+
+            for(Booking b : database.bookings) {
+
+                if(b.getBookingID() == bookingID) {
+
+                    booking = b;
+                    break;
+                }
+            }
+
+
+            if(booking == null) {
+                return 0;
+            }
+
+
+
+            dataModels.User user = null;
+
+
+            for(dataModels.User u : database.users) {
+
+                if(u.getUserID() == booking.getUserID()) {
+
+                    user = u;
+                    break;
+                }
+            }
+
+
+            if(user == null 
+                    || user.getAccountType() == null) {
+
+                return 0;
+            }
+
+
+
+            double hourlyRate =
+                    user.getAccountType()
+                        .getHourlyRate();
+
+
+
+            long hours =
+                    java.time.Duration.between(
+                            booking.getBookingTime(),
+                            booking.getBookingEndTime()
+                    ).toHours();
+
+
+
+            if(hours <= 0) {
+
+                hours = 1;
+            }
+
+
+            return hourlyRate * hours;
+
+
+        } catch(Exception e) {
+
+            e.printStackTrace();
+        }
+
+
+        return 0;
     }
 
 }
