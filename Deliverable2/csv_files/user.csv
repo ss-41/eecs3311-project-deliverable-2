@@ -1,7 +1,7 @@
-userID,name,email,password,stud_OR_orgID,accountType
-8,Alice Chang,alice@university.edu,d82mw3rw1xaskvH,S508342756,Student
-1,Chief,chief@yorku.ca,admin123,COORD,Faculty
-2,Tom,tom@gmail.com,123,123,Student
-3,Sushi,qwe,qwe,1234,Faculty
-4,noob,noob@gmail.com,noob,1234567890,Student
-6,Ranger,r@gmail.com,123,2
+userID,name,email,password,stud_OR_orgID,accountType,admin
+8,Alice Chang,alice@university.edu,d82mw3rw1xaskvH,S508342756,Student,false
+1,Chief,chief@yorku.ca,admin123,COORD,Faculty,false
+2,Tom,tom@gmail.com,123,123,Student,false
+3,Sushi,qwe,qwe,1234,Faculty,false
+4,noob,noob@gmail.com,noob,1234567890,Student,false
+6,Jack Rey,jack.rey@gmail.com,B9cCfNshcJsupLMx0Q8u,S123234529,Student,true

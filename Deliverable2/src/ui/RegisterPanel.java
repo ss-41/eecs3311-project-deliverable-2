@@ -3,6 +3,8 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 import controller.AccountController;
+import dataModels.AccountType;
+import database.singleton.Database;
 
 public class RegisterPanel extends JPanel {
 	
@@ -63,6 +65,8 @@ public class RegisterPanel extends JPanel {
                 frame.showLogin());
         
         registerButton.addActionListener(e -> {
+        	String selectedType = (String) typeBox.getSelectedItem();
+        	AccountType a = Database.getInstance().createAccountType(selectedType);
 
         	if(nameField.getText().isBlank()
         	        || emailField.getText().isBlank()
@@ -82,7 +86,7 @@ public class RegisterPanel extends JPanel {
                             emailField.getText(),
                             new String(passwordField.getPassword()),
                             organizationIDField.getText(), 
-                            null,
+                            a,
                             false
                     );
 

@@ -411,6 +411,7 @@ public class Database {
             csvOutputUser.write("password");
             csvOutputUser.write("stud_OR_orgID");
             csvOutputUser.write("accountType");
+            csvOutputUser.write("admin");
             csvOutputUser.endRecord();
 
             for (User user : users) {
@@ -430,7 +431,9 @@ public class Database {
                 csvOutputUser.write(
                         user.getAccountType().getTypeName()
                 );
-
+                
+                csvOutputUser.write(String.valueOf(user.isAdmin()));
+                
                 csvOutputUser.endRecord();
             }
 
@@ -533,7 +536,7 @@ public class Database {
         return null;
     }
 
-    private AccountType createAccountType(
+    public AccountType createAccountType(
             String accountTypeName) {
 
         switch (accountTypeName) {
