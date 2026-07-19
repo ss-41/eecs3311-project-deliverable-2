@@ -8,13 +8,15 @@ import observer.Observer;
 
 public class Booking implements Observer{
 	private int bookingID;
+	private int roomID;
 	private double deposit; 
 	private BookingStatus bookingStatus; 
 	private LocalDateTime bookingTime; 
 	private LocalDateTime bookingEndTime; 
 	
-	public Booking(int bookingID, double deposit, BookingStatus bookingStatus, LocalDateTime bookingTime, LocalDateTime bookingEndTime) {
+	public Booking(int bookingID, int roomID, double deposit, BookingStatus bookingStatus, LocalDateTime bookingTime, LocalDateTime bookingEndTime) {
 		this.bookingID = bookingID; 
+		this.roomID = roomID; 
 		this.deposit = deposit; 
 		this.bookingStatus = bookingStatus;
 		this.bookingTime = bookingTime; 
@@ -37,8 +39,14 @@ public class Booking implements Observer{
 		return 0.00;
 	}
 	
+	//checks if the booked room is currently occupied
 	public void update(Room room) {
-		
+		if(room.getLastEvent().equals("Occupancy Check")) {
+			System.out.println("[Booking] Reacting to occupancy change on Room " + room.getRoomNum() + " where occupancy = " + room.isLastOccupied());
+			if (room.isLastOccupied()) {
+                bookingStatus =  null;
+            }
+		}
 	}
 
 	public int getBookingID() {
@@ -86,7 +94,15 @@ public class Booking implements Observer{
 		String stringBookingStatus = bookingStatus.name();
 		String stringBookingTime = bookingTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 		String stringBookingEndTime = bookingEndTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-		return "Booking ID: " + bookingID + ", Booking Deposit: "+ deposit + ", Booking Status: " + stringBookingStatus + ", Booking Start Time: " + stringBookingTime + ", Booking End Time: " + stringBookingEndTime;
+		return "Booking ID: " + bookingID + ", Room ID: " + roomID + ", Booking Deposit: "+ deposit + ", Booking Status: " + stringBookingStatus + ", Booking Start Time: " + stringBookingTime + ", Booking End Time: " + stringBookingEndTime;
+	}
+
+	public int getRoomID() {
+		return roomID;
+	}
+
+	public void setRoomID(int roomID) {
+		this.roomID = roomID;
 	}
 
 }

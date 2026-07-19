@@ -116,6 +116,7 @@ public class Database {
 			readerBooking.readHeaders();
 			while (readerBooking.readRecord()) {
 				int bookingID = Integer.valueOf(readerBooking.get("bookingID")); 
+				int roomID = Integer.valueOf(readerBooking.get("roomID"));
 				Double deposit = Double.valueOf(readerBooking.get("deposit")); 
 				String stringBookingStatus = readerBooking.get("bookingStatus"); 
 				BookingStatus bookingStatus = BookingStatus.valueOf(stringBookingStatus);
@@ -123,7 +124,7 @@ public class Database {
 				LocalDateTime bookingTime = LocalDateTime.parse(stringBookingTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 				String stringBookingEndTime = readerBooking.get("bookingEndTime");
 				LocalDateTime bookingEndTime = LocalDateTime.parse(stringBookingEndTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-				Booking b = new Booking(bookingID, deposit, bookingStatus, bookingTime, bookingEndTime);
+				Booking b = new Booking(bookingID, roomID, deposit, bookingStatus, bookingTime, bookingEndTime);
 				bookings.add(b);
 			}
 			readerBooking.close();
@@ -138,6 +139,7 @@ public class Database {
 		CsvWriter csvOutputBooking = new CsvWriter(new FileWriter(pathBookings, false), ',');
 		try {
 			csvOutputBooking.write("bookingID");
+			csvOutputBooking.write("roomID");
 			csvOutputBooking.write("deposit");
 			csvOutputBooking.write("bookingStatus");
 			csvOutputBooking.write("bookingTime");
@@ -146,6 +148,7 @@ public class Database {
 			
 			for (Booking b: bookings) {
 				csvOutputBooking.write(String.valueOf(b.getBookingID()));
+				csvOutputBooking.write(String.valueOf(b.getRoomID()));
 				csvOutputBooking.write(String.valueOf(b.getDeposit()));
 				String stringBookingStatus = b.getBookingStatus().name();
 				csvOutputBooking.write(stringBookingStatus);

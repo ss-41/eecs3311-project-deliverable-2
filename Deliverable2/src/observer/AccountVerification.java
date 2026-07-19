@@ -14,16 +14,25 @@ public class AccountVerification implements Observer{
 	}
 	
 	public boolean validateEmail() {
-		return false; 
+		return verifiedEmail; 
 	}
 	
 	public boolean verifyUniversityAccount() {
-		return false; 
+		return universityVerified; 
 	}
 
+	//Account Verification class is notified when badge is scanned for student/org ID
 	@Override
 	public void update(Room room) {
 		// TODO Auto-generated method stub
+		if (room.getLastEvent().equals("Badge Scan")) {
+			String output = "[AccountVerification] Reacting to badge scan on Room " + room.getRoomNum()
+            + ", userID = " + room.getLastUser().getUserID() + ", user Name = " + room.getLastUser().getName()
+            + ", verifiedEmail = " + verifiedEmail
+            + ", universityVerified = " + universityVerified;
+			System.out.println(output);
+		}
+		
 		
 	}
 	
