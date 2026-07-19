@@ -23,7 +23,7 @@ public class ChiefEventCoordinator extends Administrator {
         );
     }
 
-    public Administrator createAdministrator(
+    public User createAdministrator(
             String name,
             String email,
             String password,
@@ -34,8 +34,7 @@ public class ChiefEventCoordinator extends Administrator {
 
         int administratorID = database.getNextUserID();
 
-        Administrator administrator =
-                GenerateAccountFactory.createAdministrator(
+        User administrator = GenerateAccountFactory.createAdministrator(
                         administratorID,
                         name,
                         email,

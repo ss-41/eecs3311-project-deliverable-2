@@ -80,15 +80,14 @@ public class RegisterPanel extends JPanel {
                 return;
             }
 
-            boolean success =
-                    accountController.registerUser(
-                            nameField.getText(),
-                            emailField.getText(),
-                            new String(passwordField.getPassword()),
-                            organizationIDField.getText(), 
-                            a,
-                            false
-                    );
+        	boolean success =
+        	        accountController.registerUser(
+        	                nameField.getText(),
+        	                emailField.getText(),
+        	                new String(passwordField.getPassword()),
+        	                organizationIDField.getText(),
+        	                a
+        	        );
 
             if(success) {
 

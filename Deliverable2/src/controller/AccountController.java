@@ -2,6 +2,7 @@ package controller;
 
 import account.factory.GenerateAccountFactory;
 import dataModels.AccountType;
+import dataModels.Administrator;
 import dataModels.User;
 import database.singleton.Database;
 
@@ -20,8 +21,7 @@ public class AccountController {
             String email,
             String password,
             String studentOrOrgID,
-            AccountType accountType,
-            Boolean admin ) {
+            AccountType accountType) {
 
 
         try {
@@ -46,15 +46,7 @@ public class AccountController {
         int id = database.users.size() + 1;
 
 
-        User user = new User(
-                id,
-                name,
-                email,
-                password,
-                studentOrOrgID,
-                accountType,
-                admin
-        );
+        User user = GenerateAccountFactory.createUser(id,name,email,password,studentOrOrgID,accountType);
 
 
         database.users.add(user);
@@ -121,15 +113,13 @@ public class AccountController {
 	
 	        int id = database.users.size()+1;
 	
-	        User admin =
-	                new User(
+	        Administrator admin = GenerateAccountFactory.createAdministrator(
 	                        id,
 	                        name,
 	                        email,
 	                        password,
 	                        employeeID,
-	                        Database.getInstance().createAccountType("Staff"),
-	                        true
+	                        Database.getInstance().createAccountType("Staff")
 	                );	
 	
 	        database.users.add(admin);
