@@ -1,11 +1,12 @@
 package controller;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import booking.state.ActiveState;
 import dataModels.Booking;
 import utils.BookingCSVManager;
-import java.util.ArrayList;
+
 
 public class BookingController {
 
@@ -30,12 +31,13 @@ public class BookingController {
                 );
 
 
-        return BookingCSVManager.saveBooking(
-                booking
-        );
+        return BookingCSVManager.saveBooking(booking);
 
     }
-    
+
+
+
+
     public ArrayList<String[]> getBookings() {
 
         return BookingCSVManager.loadBookings();

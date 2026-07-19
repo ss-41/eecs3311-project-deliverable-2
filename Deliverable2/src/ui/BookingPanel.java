@@ -2,73 +2,76 @@ package ui;
 
 import javax.swing.*;
 import java.awt.*;
-import controller.BookingController;
 import java.time.LocalDateTime;
-import controller.RoomController;
 import java.util.ArrayList;
 
+import controller.BookingController;
+import controller.RoomController;
+
+
 public class BookingPanel extends JPanel {
-	
-	private BookingController controller = new BookingController();
-	private JComboBox<String> roomBox;
-	private RoomController roomController =new RoomController();
-	private ArrayList<String[]> availableRooms;
+
+
+    private JComboBox<String> roomBox;
+
+    private ArrayList<String[]> availableRooms;
+
+
+    private RoomController roomController =
+            new RoomController();
+
+
+    private BookingController bookingController =
+            new BookingController();
+
+
 
     public BookingPanel(MainFrame frame) {
 
+
         setLayout(new BorderLayout());
 
-        JLabel title = new JLabel(
-                "Room Booking",
-                SwingConstants.CENTER
-        );
-
-        title.setFont(
-                new Font("Arial",
-                Font.BOLD,
-                24)
-        );
 
 
-        add(title, BorderLayout.NORTH);
+        JPanel panel =
+                new JPanel(
+                new GridLayout(3,2,10,10));
 
 
-        JPanel panel = new JPanel(
-                new GridLayout(5,2,10,10)
-        );
+
+        roomBox =
+                new JComboBox<>();
 
 
-        panel.add(new JLabel("Select Room"));
-        roomBox = new JComboBox<>();
         loadRooms();
+
+
+
+        panel.add(
+                new JLabel("Select Room")
+        );
+
+
         panel.add(roomBox);
 
-
-        panel.add(new JLabel("Date"));
-        panel.add(new JTextField());
-
-
-        panel.add(new JLabel("Start Time"));
-        panel.add(new JTextField());
-
-
-        panel.add(new JLabel("Duration (hours)"));
-        panel.add(new JTextField());
 
 
         JButton book =
                 new JButton("Book");
 
-
         JButton back =
                 new JButton("Back");
 
 
+
         panel.add(book);
+
         panel.add(back);
 
 
-        add(panel, BorderLayout.CENTER);
+
+        add(panel,BorderLayout.CENTER);
+
 
 
         back.addActionListener(e ->
@@ -76,78 +79,83 @@ public class BookingPanel extends JPanel {
         );
 
 
+
         book.addActionListener(e -> {
-        	
-        	int bookingID =
-        	        (int)(Math.random()*10000);
 
 
-        	int selectedIndex =
-        	        roomBox.getSelectedIndex();
+            int index =
+                    roomBox.getSelectedIndex();
 
 
-        	String[] selectedRoom =
-        	        availableRooms.get(selectedIndex);
+            if(index < 0)
+                return;
 
 
-        	int roomID =
-        	        Integer.parseInt(
-        	                selectedRoom[0]
-        	        );
+
+            String[] room =
+                    availableRooms.get(index);
 
 
-        	boolean success =
-        	        controller.createBooking(
-        	                bookingID,
-        	                roomID,
-        	                20.0,
-        	                LocalDateTime.now(),
-        	                LocalDateTime.now().plusHours(1)
-        	        );
-        
-            if(success){
+
+            int roomID =
+                    Integer.parseInt(room[0]);
+
+
+
+            int bookingID =
+                    (int)(Math.random()*10000);
+
+
+
+            boolean success =
+                    bookingController.createBooking(
+                            bookingID,
+                            roomID,
+                            20.0,
+                            LocalDateTime.now(),
+                            LocalDateTime.now()
+                                    .plusHours(1)
+                    );
+
+
+
+            if(success) {
+
 
                 JOptionPane.showMessageDialog(
                         this,
-                        "Booking created!"
+                        "Booking Created!"
                 );
 
-            }
-            else{
-
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Booking failed."
-                );
 
             }
+
 
         });
 
     }
-    
+
+
+
     private void loadRooms() {
 
 
-    	availableRooms =
-    	        roomController.getAvailableRooms();
+        availableRooms =
+                roomController.getAvailableRooms();
+
 
 
         for(String[] room : availableRooms) {
 
 
-            String display =
+            roomBox.addItem(
                     room[1]
                     + " - "
                     + room[3]
-                    + " (Capacity "
-                    + room[2]
-                    + ")";
-
-
-            roomBox.addItem(display);
+            );
 
         }
 
     }
+
 }

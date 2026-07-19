@@ -12,6 +12,7 @@ public class MyBookingsPanel extends JPanel {
 
     private JTextArea bookingArea;
 
+
     private BookingController controller =
             new BookingController();
 
@@ -23,23 +24,15 @@ public class MyBookingsPanel extends JPanel {
         setLayout(new BorderLayout());
 
 
+
         JLabel title =
                 new JLabel(
                         "My Bookings",
-                        SwingConstants.CENTER
-                );
+                        SwingConstants.CENTER);
 
 
-        title.setFont(
-                new Font(
-                        "Arial",
-                        Font.BOLD,
-                        24
-                )
-        );
 
-
-        add(title, BorderLayout.NORTH);
+        add(title,BorderLayout.NORTH);
 
 
 
@@ -50,10 +43,10 @@ public class MyBookingsPanel extends JPanel {
         bookingArea.setEditable(false);
 
 
+
         add(
                 new JScrollPane(bookingArea),
-                BorderLayout.CENTER
-        );
+                BorderLayout.CENTER);
 
 
 
@@ -71,13 +64,12 @@ public class MyBookingsPanel extends JPanel {
 
 
         buttons.add(refresh);
+
         buttons.add(back);
 
 
-        add(
-                buttons,
-                BorderLayout.SOUTH
-        );
+
+        add(buttons,BorderLayout.SOUTH);
 
 
 
@@ -92,9 +84,8 @@ public class MyBookingsPanel extends JPanel {
         );
 
 
-        loadBookings();
-
     }
+
 
 
 
@@ -102,6 +93,7 @@ public class MyBookingsPanel extends JPanel {
 
 
         bookingArea.setText("");
+
 
 
         ArrayList<String[]> bookings =
@@ -113,14 +105,13 @@ public class MyBookingsPanel extends JPanel {
 
 
             bookingArea.append(
-
                     "Booking ID: "
                     + booking[0]
 
                     + "\nRoom ID: "
                     + booking[1]
 
-                    + "\nDeposit: $"
+                    + "\nDeposit: "
                     + booking[2]
 
                     + "\nStatus: "
@@ -132,8 +123,7 @@ public class MyBookingsPanel extends JPanel {
                     + "\nEnd: "
                     + booking[5]
 
-                    + "\n-------------------\n"
-
+                    + "\n\n"
             );
 
         }

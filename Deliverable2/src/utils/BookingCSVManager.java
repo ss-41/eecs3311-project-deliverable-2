@@ -1,17 +1,18 @@
 package utils;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import dataModels.Booking;
-import java.io.BufferedReader;
-import java.io.FileReader;
+
+import java.io.*;
 import java.util.ArrayList;
+
+import dataModels.Booking;
+
+
 
 public class BookingCSVManager {
 
 
-    private static final String FILE =
-            "src/csv files/booking.csv";
+    private static final String FILE = "src/csv_files/booking.csv";
+
 
 
     public static boolean saveBooking(Booking booking) {
@@ -21,8 +22,11 @@ public class BookingCSVManager {
                 new FileWriter(FILE,true)) {
 
 
+
             writer.write(
                     booking.getBookingID()
+                    + ","
+                    + booking.getRoomID()
                     + ","
                     + booking.getDeposit()
                     + ","
@@ -41,13 +45,17 @@ public class BookingCSVManager {
         } catch(IOException e) {
 
             e.printStackTrace();
-            return false;
 
+            return false;
         }
 
     }
-    
+
+
+
+
     public static ArrayList<String[]> loadBookings() {
+
 
         ArrayList<String[]> bookings =
                 new ArrayList<>();
@@ -58,8 +66,9 @@ public class BookingCSVManager {
                         new FileReader(FILE))) {
 
 
-            // skip header
+
             reader.readLine();
+
 
 
             String line;
@@ -68,11 +77,16 @@ public class BookingCSVManager {
             while((line = reader.readLine()) != null) {
 
 
-                bookings.add(
-                        line.split(",")
-                );
+                if(!line.isBlank()) {
+
+                    bookings.add(
+                            line.split(",")
+                    );
+
+                }
 
             }
+
 
 
         } catch(IOException e) {
@@ -82,7 +96,9 @@ public class BookingCSVManager {
         }
 
 
+
         return bookings;
+
     }
 
 }
