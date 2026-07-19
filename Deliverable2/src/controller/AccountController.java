@@ -7,44 +7,143 @@ import database.singleton.Database;
 
 public class AccountController {
 
-    public User registerUser(
+    private final Database database;
+
+
+    public AccountController() {
+        database = Database.getInstance();
+    }
+
+
+    public boolean registerUser(
             String name,
             String email,
             String password,
-            String stud_OR_orgID,
-            AccountType accountType) throws Exception {
+            String studentOrOrgID,
+            AccountType accountType,
+            Boolean admin ) {
 
-        Database database = Database.getInstance();
 
-        
-        database.loadUsers();
+        try {
+            database.loadUsers();
 
-        if (database.emailExists(email)) {
-            return null;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
         }
 
-        int nextUserID = database.getNextUserID();
 
-        User newUser = GenerateAccountFactory.createUser(
-                nextUserID,
+        // check existing email
+        for(User user : database.users) {
+
+            if(user.getEmail().equals(email)) {
+                return false;
+            }
+
+        }
+
+
+        int id = database.users.size() + 1;
+
+
+        User user = new User(
+                id,
                 name,
                 email,
                 password,
-                stud_OR_orgID,
-                accountType
+                studentOrOrgID,
+                accountType,
+                false
         );
 
-        
-        database.addUser(newUser);
 
-        return newUser;
+        database.users.add(user);
+
+
+        try {
+
+            database.storeUsers();
+            return true;
+
+        } catch(Exception e) {
+
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
-    public User login(String email, String password) throws Exception {
-        Database database = Database.getInstance();
+    public User login(
+            String email,
+            String password) {
 
-        database.loadUsers();
 
-        return database.validateLogin(email, password);
+        try {
+            database.loadUsers();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+
+        for(User user : database.users) {
+
+            if(user.getEmail().equals(email)
+                    && user.getPassword().equals(password)) {
+
+                return user;
+            }
+        }
+
+        return null;
+
     }
+
+
+	public boolean createAdmin(
+        String name,
+        String email,
+        String password,
+        String employeeID) {
+
+	    try {
+	
+	        database.loadUsers();
+	
+	        for(User user : database.users) {
+	
+	            if(user.getEmail().equals(email)) {
+	                return false;
+	            }
+	
+	        }
+	
+	        int id = database.users.size()+1;
+	
+	        User admin =
+	                new User(
+	                        id,
+	                        name,
+	                        email,
+	                        password,
+	                        employeeID,
+	                        true
+	                );	
+	
+	        database.users.add(admin);
+	        database.storeUsers();
+	
+	        return true;
+	
+	    } catch(Exception e) {
+	
+	        e.printStackTrace();
+	
+	    }
+	
+	    return false;
+	}
+
+
 }

@@ -11,6 +11,7 @@ public class MainFrame extends JFrame {
     private User currentUser;
     private DashboardPanel dashboardPanel;
     private MyBookingsPanel myBookingsPanel;
+    private AdminPanel adminPanel;
 
     public MainFrame() {
 
@@ -18,6 +19,8 @@ public class MainFrame extends JFrame {
         setSize(900, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        
+        initializeDatabase();
 
 
         cardLayout = new CardLayout();
@@ -29,8 +32,10 @@ public class MainFrame extends JFrame {
         RegisterPanel registerPanel = new RegisterPanel(this);
         BookingPanel bookingPanel = new BookingPanel(this);
         PaymentPanel paymentPanel = new PaymentPanel(this);
-        AdminPanel adminPanel = new AdminPanel(this);
+        adminPanel = new AdminPanel(this);
         myBookingsPanel = new MyBookingsPanel(this);
+        RoomManagementPanel roomManagementPanel = new RoomManagementPanel(this);
+        SensorPanel sensorPanel = new SensorPanel(this);
 
         mainPanel.add(registerPanel,"REGISTER");
         mainPanel.add(loginPanel, "LOGIN");
@@ -39,6 +44,8 @@ public class MainFrame extends JFrame {
         mainPanel.add(paymentPanel,"PAYMENT");
         mainPanel.add(adminPanel,"ADMIN");
         mainPanel.add(myBookingsPanel,"MY_BOOKINGS");
+        mainPanel.add(roomManagementPanel,"ROOM_MANAGEMENT");
+        mainPanel.add(sensorPanel,"SENSORS");
 
 
         add(mainPanel);
@@ -48,6 +55,12 @@ public class MainFrame extends JFrame {
 
 
     public void showPanel(String panelName) {
+        if(panelName.equals("DASHBOARD")) {
+            dashboardPanel.refreshUser(currentUser);
+        }
+        if(panelName.equals("ADMIN")) {
+            adminPanel.refreshAdmin(currentUser);
+        }
         cardLayout.show(mainPanel, panelName);
     }
 
@@ -83,6 +96,27 @@ public class MainFrame extends JFrame {
     public DashboardPanel getDashboardPanel() {
         return dashboardPanel;
     }
+    
+    private void initializeDatabase() {
+
+        try {
+
+            database.singleton.Database db =
+                    database.singleton.Database.getInstance();
+
+            db.loadUsers();
+            db.loadRooms();
+            db.loadBookings();
+
+        } catch(Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+    
+    
     
     
 }

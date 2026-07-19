@@ -7,35 +7,52 @@ import java.util.ArrayList;
 
 import controller.BookingController;
 import controller.RoomController;
+import dataModels.Room;
 
 
 public class BookingPanel extends JPanel {
 
 
     private JComboBox<String> roomBox;
+    private ArrayList<Room> availableRooms;
+    private MainFrame frame;
 
-    private ArrayList<String[]> availableRooms;
-
-
-    private RoomController roomController =
-            new RoomController();
-
-
-    private BookingController bookingController =
-            new BookingController();
-
-
+    private RoomController roomController = new RoomController();
+    private BookingController bookingController = new BookingController();
+    
 
     public BookingPanel(MainFrame frame) {
 
-
+    	this.frame = frame;
+    	
         setLayout(new BorderLayout());
+
+
+
+        JLabel title =
+                new JLabel(
+                        "Create Booking",
+                        SwingConstants.CENTER
+                );
+
+
+        title.setFont(
+                new Font(
+                        "Arial",
+                        Font.BOLD,
+                        24
+                )
+        );
+
+
+        add(title, BorderLayout.NORTH);
 
 
 
         JPanel panel =
                 new JPanel(
-                new GridLayout(3,2,10,10));
+                        new GridLayout(4,2,10,10)
+                );
 
 
 
@@ -57,7 +74,12 @@ public class BookingPanel extends JPanel {
 
 
         JButton book =
-                new JButton("Book");
+                new JButton("Book Room");
+
+
+        JButton refresh =
+                new JButton("Refresh Rooms");
+
 
         JButton back =
                 new JButton("Back");
@@ -65,18 +87,22 @@ public class BookingPanel extends JPanel {
 
 
         panel.add(book);
-
+        panel.add(refresh);
         panel.add(back);
 
 
 
-        add(panel,BorderLayout.CENTER);
+        add(panel, BorderLayout.CENTER);
 
 
 
-        back.addActionListener(e ->
-                frame.showPanel("DASHBOARD")
-        );
+        refresh.addActionListener(e -> {
+
+            roomBox.removeAllItems();
+
+            loadRooms();
+
+        });
 
 
 
@@ -87,35 +113,38 @@ public class BookingPanel extends JPanel {
                     roomBox.getSelectedIndex();
 
 
-            if(index < 0)
+            if(index < 0) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Please select a room."
+                );
+
                 return;
 
+            }
 
 
-            String[] room =
+
+            Room room =
                     availableRooms.get(index);
 
 
 
-            int roomID =
-                    Integer.parseInt(room[0]);
-
-
-
             int bookingID =
-                    (int)(Math.random()*10000);
+                    (int)(System.currentTimeMillis() % 100000);
 
 
 
             boolean success =
-                    bookingController.createBooking(
-                            bookingID,
-                            roomID,
-                            20.0,
-                            LocalDateTime.now(),
-                            LocalDateTime.now()
-                                    .plusHours(1)
-                    );
+            		bookingController.createBooking(
+            		        bookingID,
+            		        frame.getCurrentUser().getUserID(),
+            		        room.getRoomID(),
+            		        20.00,
+            		        LocalDateTime.now(),
+            		        LocalDateTime.now().plusHours(1)
+            		);
 
 
 
@@ -124,38 +153,37 @@ public class BookingPanel extends JPanel {
 
                 JOptionPane.showMessageDialog(
                         this,
-                        "Booking Created!"
+                        "Booking created successfully!"
                 );
 
 
             }
+            else {
 
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Booking failed."
+                );
+
+            }
 
         });
 
+
+
+        back.addActionListener(e ->
+                frame.showPanel("DASHBOARD")
+        );
+
     }
+    
+    private void loadRooms(){
 
+        availableRooms = roomController.getAvailableRooms();
 
-
-    private void loadRooms() {
-
-
-        availableRooms =
-                roomController.getAvailableRooms();
-
-
-
-        for(String[] room : availableRooms) {
-
-
-            roomBox.addItem(
-                    room[1]
-                    + " - "
-                    + room[3]
-            );
-
-        }
-
+        for(Room room : availableRooms)
+            roomBox.addItem(room.getRoomNum()+" - "+room.getBuilding());
     }
 
 }

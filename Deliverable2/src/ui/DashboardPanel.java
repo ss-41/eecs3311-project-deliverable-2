@@ -10,6 +10,7 @@ public class DashboardPanel extends JPanel {
 
     private JLabel welcomeLabel;
     private JLabel userInfoLabel;
+    private JButton admin;
 
 
     public DashboardPanel(MainFrame frame) {
@@ -73,8 +74,8 @@ public class DashboardPanel extends JPanel {
                 new JButton("Payments");
 
 
-        JButton admin =
-                new JButton("Admin");
+        admin = new JButton("Admin");
+        admin.setVisible(false);
 
 
         JButton logout =
@@ -127,7 +128,6 @@ public class DashboardPanel extends JPanel {
 
     public void refreshUser(User user) {
 
-
         if(user != null) {
 
             welcomeLabel.setText(
@@ -141,6 +141,8 @@ public class DashboardPanel extends JPanel {
                     + " | "
                     + user.getStud_OR_orgID()
             );
+
+            admin.setVisible(user.isAdmin());
 
         }
 

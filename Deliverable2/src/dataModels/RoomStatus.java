@@ -1,6 +1,6 @@
 package dataModels;
 
 public enum RoomStatus {
-	AVAILABLE, DISABLED, CLOSED
+	AVAILABLE, DISABLED, CLOSED, MAINTENANCE
 
 }

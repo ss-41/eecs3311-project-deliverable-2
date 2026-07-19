@@ -33,6 +33,7 @@ public class Room implements Subject{
 		if (observers == null) {
 			this.observers = new ArrayList<Observer>(); 
 		}
+		
 		badgeScanner = new BadgeScanner(this);
 		occupancySensor = new OccupancySensor(this);
 		

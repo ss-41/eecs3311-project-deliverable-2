@@ -18,6 +18,7 @@ import dataModels.User;
 
 public class Database {
 
+
     private static Database instance;
 
     private static final String pathRooms =
@@ -185,6 +186,10 @@ public class Database {
                         Integer.parseInt(
                                 readerBooking.get("bookingID")
                         );
+                
+                int userID = Integer.parseInt(
+                        readerBooking.get("userID")
+                );
 
                 int roomID =
                         Integer.parseInt(
@@ -218,6 +223,7 @@ public class Database {
 
                 Booking booking = new Booking(
                         bookingID,
+                        userID,
                         roomID,
                         deposit,
                         bookingStatus,
@@ -246,6 +252,7 @@ public class Database {
 
         try {
             csvOutputBooking.write("bookingID");
+            csvOutputBooking.write("userID");
             csvOutputBooking.write("roomID");
             csvOutputBooking.write("deposit");
             csvOutputBooking.write("bookingStatus");
@@ -263,6 +270,12 @@ public class Database {
                 csvOutputBooking.write(
                         String.valueOf(
                                 booking.getBookingID()
+                        )
+                );
+                
+                csvOutputBooking.write(
+                        String.valueOf(
+                                booking.getUserID()
                         )
                 );
 

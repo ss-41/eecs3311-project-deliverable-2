@@ -6,61 +6,72 @@ import java.time.format.DateTimeFormatter;
 import booking.state.ActiveState;
 import observer.Observer;
 
+public class Booking implements Observer {
 
-public class Booking implements Observer{
-	private int bookingID;
-	private int roomID;
-	private double deposit; 
-	private BookingStatus bookingStatus; 
-	private LocalDateTime bookingTime; 
-	private LocalDateTime bookingEndTime; 
-	
-	public Booking(int bookingID, int roomID, double deposit, BookingStatus bookingStatus, LocalDateTime bookingTime, LocalDateTime bookingEndTime) {
-		this.bookingID = bookingID; 
-		this.roomID = roomID; 
-		this.deposit = deposit; 
-		this.bookingStatus = bookingStatus;
-		this.bookingTime = bookingTime; 
-		this.bookingEndTime = bookingEndTime;
-	}
-	
-	//temp constructor created by Trinity
-	public Booking(int bookingID2, int roomID2, double deposit2, ActiveState activeState, LocalDateTime start,
-			LocalDateTime end) {
-		// TODO Auto-generated constructor stub
-	}
+    private int bookingID;
+    private int userID;
+    private int roomID;
+    private double deposit;
 
-	public void editBooking() {
-		
-	}
-	
-	public void cancelBooking() {
-		
-	}
-	
-	public boolean extendBooking() {
-		return false; 
-	}
-	
-	public double totalCost() {
-		return 0.00;
-	}
-	
-	//checks if the booked room is currently occupied
-	public void update(Room room) {
-		if(room.getLastEvent().equals("Occupancy Check")) {
-			System.out.println("[Booking] Reacting to occupancy change on Room " + room.getRoomNum() + " where occupancy = " + room.isLastOccupied());
-			if (room.isLastOccupied()) {
-                bookingStatus =  null;
-            }
-		}
-	}
+    private BookingStatus bookingStatus;
 
+    private LocalDateTime bookingTime;
+    private LocalDateTime bookingEndTime;
+
+
+
+    public Booking(
+            int bookingID,
+            int userID,
+            int roomID,
+            double deposit,
+            BookingStatus bookingStatus,
+            LocalDateTime bookingTime,
+            LocalDateTime bookingEndTime
+    ) {
+
+    	this.bookingID = bookingID;
+        this.userID = userID;
+        this.roomID = roomID;
+        this.deposit = deposit;
+        this.bookingStatus = bookingStatus;
+        this.bookingTime = bookingTime;
+        this.bookingEndTime = bookingEndTime;
+
+    }
+
+
+
+    // used by BookingController
+    public Booking(
+            int bookingID,
+            int userID,
+            int roomID,
+            double deposit,
+            ActiveState state,
+            LocalDateTime start,
+            LocalDateTime end
+    ) {
+
+        this.bookingID = bookingID;
+        this.userID = userID;
+        this.roomID = roomID;
+        this.deposit = deposit;
+        this.bookingStatus = BookingStatus.ACTIVE;
+        this.bookingTime = start;
+        this.bookingEndTime = end;
+
+    }
 
 
 
     public int getBookingID() {
         return bookingID;
+    }
+
+
+    public int getUserID() {
+        return userID;
     }
 
 
@@ -74,11 +85,8 @@ public class Booking implements Observer{
     }
 
 
-    public String getStatus() {
-
-        return bookingStatus
-                .getClass()
-                .getSimpleName();
+    public BookingStatus getBookingStatus() {
+        return bookingStatus;
     }
 
 
@@ -90,45 +98,55 @@ public class Booking implements Observer{
     public LocalDateTime getBookingEndTime() {
         return bookingEndTime;
     }
+
+    public void setBookingStatus(BookingStatus status){
+        this.bookingStatus = status;
+    }
     
-    
+    public void setBookingEndTime(LocalDateTime bookingEndTime) {
 
-	public void setBookingID(int bookingID) {
-		this.bookingID = bookingID;
-	}
+        this.bookingEndTime = bookingEndTime;
 
+    }
 
-	public void setDeposit(double deposit) {
-		this.deposit = deposit;
-	}
+    public String getStatus(){
 
-	public BookingStatus getBookingStatus() {
-		return bookingStatus;
-	}
+        return bookingStatus.name();
 
-	public void setBookingStatus(BookingStatus bookingStatus) {
-		this.bookingStatus = bookingStatus;
-	}
-
-	public void setBookingTime(LocalDateTime bookingTime) {
-		this.bookingTime = bookingTime;
-	}
-
-	public void setBookingEndTime(LocalDateTime bookingEndTime) {
-		this.bookingEndTime = bookingEndTime;
-	}
-	
-	@Override
-	public String toString() {
-		String stringBookingStatus = bookingStatus.name();
-		String stringBookingTime = bookingTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-		String stringBookingEndTime = bookingEndTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-		return "Booking ID: " + bookingID + ", Room ID: " + roomID + ", Booking Deposit: "+ deposit + ", Booking Status: " + stringBookingStatus + ", Booking Start Time: " + stringBookingTime + ", Booking End Time: " + stringBookingEndTime;
-	}
+    }
 
 
-	public void setRoomID(int roomID) {
-		this.roomID = roomID;
-	}
+
+    @Override
+    public void update(Room room){
+
+        if(room.getLastEvent().equals("Occupancy Check")){
+
+            if(room.isLastOccupied()){
+                bookingStatus = BookingStatus.COMPLETED;
+            }
+
+        }
+
+    }
+
+
+
+    @Override
+    public String toString(){
+
+        DateTimeFormatter formatter =
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+
+        return
+                "Booking ID: " + bookingID +
+                "\nRoom ID: " + roomID +
+                "\nDeposit: $" + deposit +
+                "\nStatus: " + bookingStatus +
+                "\nStart: " + bookingTime.format(formatter) +
+                "\nEnd: " + bookingEndTime.format(formatter);
+
+    }
 
 }

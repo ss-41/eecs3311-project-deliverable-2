@@ -1,59 +1,77 @@
 package controller;
 
-import java.io.*;
 import java.util.ArrayList;
+
+import dataModels.Room;
+import database.singleton.Database;
+import dataModels.RoomStatus;
 
 public class RoomController {
 
-
-    private static final String FILE =
-            "csv_files/room.csv";
+    private final Database database;
 
 
-    public ArrayList<String[]> getAvailableRooms() {
+    public RoomController() {
+        database = Database.getInstance();
+    }
 
-        ArrayList<String[]> rooms =
+
+    public ArrayList<Room> getAvailableRooms() {
+
+        try {
+            database.loadRooms();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+
+        ArrayList<Room> availableRooms =
                 new ArrayList<>();
 
 
-        try(BufferedReader reader =
-                new BufferedReader(
-                        new FileReader(FILE))) {
+        for(Room room : database.rooms) {
 
-
-            // skip header
-            reader.readLine();
-
-
-            String line;
-
-
-            while((line = reader.readLine()) != null) {
-
-
-                String[] data =
-                        line.split(",");
-
-
-                if(data.length >= 5
-                        && data[4].equals("ACTIVE")) {
-
-
-                    rooms.add(data);
-
-                }
-
+            if(room.getStatus() == RoomStatus.AVAILABLE) {
+                availableRooms.add(room);
             }
-
-
-        } catch(IOException e) {
-
-            e.printStackTrace();
 
         }
 
 
-        return rooms;
+        return availableRooms;
+    }
+    
+    public boolean addRoom(Room room) {
+
+        database.rooms.add(room);
+
+        try {
+
+            database.storeRooms();
+            return true;
+
+        } catch(Exception e) {
+
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+
+    public boolean deleteRoom(Room room) {
+
+        try {
+
+            database.deleteRoom(room);
+            return true;
+
+        } catch(Exception e) {
+
+            e.printStackTrace();
+            return false;
+        }
 
     }
 

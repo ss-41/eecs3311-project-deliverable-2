@@ -17,10 +17,10 @@ public class Main {
 		 
 		//create a new user that's not in the database 
 		AccountType a = new AccountType(5, "Student", 20.00);
-		User u1 = new User(11, "Randy Chang", "randy@university.edu", "d82mw3rw1xaskvH", "S508342656", a);
+		User u1 = new User(11, "Randy Chang", "randy@university.edu", "d82mw3rw1xaskvH", "S508342656", a, true);
 		
 		Room r1 = new Room(10, "A105", 4, "Engineering Building", RoomStatus.AVAILABLE, null);
-		Booking b1 = new Booking(8, r1.getRoomID(), 20.00, BookingStatus.ACTIVE, LocalDateTime.now(), LocalDateTime.of(2026, 7, 25, 10, 30));
+		Booking b1 = new Booking(8, r1.getRoomID(), 2, 20.00, BookingStatus.ACTIVE, LocalDateTime.now(), LocalDateTime.of(2026, 7, 25, 10, 30));
 		CheckIn c1 = new CheckIn(1, LocalDateTime.now(), false);
 		AccountVerification a1 = new AccountVerification(1, false, false);
 		

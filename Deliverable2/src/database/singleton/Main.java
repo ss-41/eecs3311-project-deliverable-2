@@ -23,8 +23,8 @@ public class Main {
 		//create new users
 		AccountType a1 = new AccountType(1, "Student", 20.00); 
 		AccountType a2 = new AccountType(2, "Staff", 40.00); 
-		User u1 = new User(6, "Jack Rey", "jack.rey@gmail.com", "B9cCfNshcJsupLMx0Q8u", "S123234529", a1);
-		User u2 = new User(7, "Emma Grace", "emma.grace@gmail.com", "sh6RkMbMQVyBPxEhJnc0", "S1423254528", a2);
+		User u1 = new User(6, "Jack Rey", "jack.rey@gmail.com", "B9cCfNshcJsupLMx0Q8u", "S123234529", a1, true);
+		User u2 = new User(7, "Emma Grace", "emma.grace@gmail.com", "sh6RkMbMQVyBPxEhJnc0", "S1423254528", a2, false);
 		db.users.add(u1); 
 		db.users.add(u2);
 		
@@ -52,7 +52,7 @@ public class Main {
 		
 		//delete the first booking and add another one into the database
 		db2.deleteBooking(db2.bookings.get(0));
-		db2.bookings.add(new Booking(7, 2,20.00, BookingStatus.ACTIVE, LocalDateTime.now(), LocalDateTime.of(2026, 7, 25, 15, 30)));
+		db2.bookings.add(new Booking(7, 2, 2 , 20.00, BookingStatus.ACTIVE, LocalDateTime.now(), LocalDateTime.of(2026, 7, 25, 15, 30)));
 		db2.storeBookings();
 		
 		//show updated bookings in database

@@ -1,13 +1,24 @@
 package dataModels;
 
 public class User {
-
-    private int userID;
-    private String name;
-    private String email;
-    private String password;
-    private String stud_OR_orgID;
-    private AccountType accountType;
+	private int userID; 
+	private String name; 
+	private String email; 
+	private String password; 
+	private String stud_OR_orgID;
+	private AccountType accountType;
+	private boolean admin;
+	
+	public User(int userID, String name, String email, String password, String stud_OR_orgID, boolean admin) {
+		this.userID = userID; 
+		this.name = name; 
+		this.email = email; 
+		this.password = password; 
+		this.stud_OR_orgID = stud_OR_orgID; 
+		this.admin = admin;
+		this.accountType = null;
+	}
+    
 
     public User(
             int userID,
@@ -30,7 +41,7 @@ public class User {
             String name,
             String email,
             String password,
-            String stud_OR_orgID
+            String stud_OR_orgID, AccountType accountType2, boolean b
             ) {
 
         this.userID = userID;
@@ -38,11 +49,16 @@ public class User {
         this.email = email;
         this.password = password;
         this.stud_OR_orgID = stud_OR_orgID;
-        this.accountType = null;
+        this.accountType = accountType2;
+        this.admin = b;
     }
     
     
 
+    public int getUserID() {
+	    return userID;
+	}
+    
     public boolean register() {
         return false;
     }
@@ -72,10 +88,6 @@ public class User {
         
     }
 
-    public int getUserID() {
-        return userID;
-    }
-    
     public String getName() {
         return name;
     }
@@ -92,6 +104,20 @@ public class User {
         this.email = email;
     }
 
+	public void setStud_OR_orgID(String stud_OR_orgID) {
+		this.stud_OR_orgID = stud_OR_orgID;
+	}
+	
+	public boolean isAdmin() {
+	    return admin;
+	}
+
+
+	public void setAdmin(boolean admin) {
+	    this.admin = admin;
+	}
+	
+
     public String getPassword() {
         return password;
     }
@@ -102,10 +128,6 @@ public class User {
 
     public String getStud_OR_orgID() {
         return stud_OR_orgID;
-    }
-
-    public void setStud_OR_orgID(String stud_OR_orgID) {
-        this.stud_OR_orgID = stud_OR_orgID;
     }
 
     public AccountType getAccountType() {

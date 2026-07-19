@@ -30,7 +30,7 @@ public class BookingCSVManager {
                     + ","
                     + booking.getDeposit()
                     + ","
-                    + booking.getStatus()
+                    + booking.getBookingStatus()
                     + ","
                     + booking.getBookingTime()
                     + ","
