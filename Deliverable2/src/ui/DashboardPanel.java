@@ -3,27 +3,84 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
+import dataModels.User;
+
 public class DashboardPanel extends JPanel {
+
+
+    private JLabel welcomeLabel;
+    private JLabel userInfoLabel;
+
 
     public DashboardPanel(MainFrame frame) {
 
+
         setLayout(new BorderLayout());
+
+
+        JPanel topPanel = new JPanel(
+                new GridLayout(3,1)
+        );
+
 
         JLabel title = new JLabel(
                 "YorkU Conference Room Scheduler",
-                SwingConstants.CENTER);
+                SwingConstants.CENTER
+        );
 
-        title.setFont(new Font("Arial", Font.BOLD, 24));
+        title.setFont(
+                new Font("Arial",
+                Font.BOLD,
+                24)
+        );
 
-        add(title, BorderLayout.NORTH);
 
-        JPanel buttonPanel = new JPanel(new GridLayout(3,2,20,20));
+        welcomeLabel = new JLabel(
+                "Welcome!",
+                SwingConstants.CENTER
+        );
 
-        JButton bookRoom = new JButton("Book Room");
-        JButton myBookings = new JButton("My Bookings");
-        JButton payments = new JButton("Payments");
-        JButton admin = new JButton("Admin");
-        JButton logout = new JButton("Logout");
+
+        userInfoLabel = new JLabel(
+                "",
+                SwingConstants.CENTER
+        );
+
+
+        topPanel.add(title);
+        topPanel.add(welcomeLabel);
+        topPanel.add(userInfoLabel);
+
+
+        add(topPanel, BorderLayout.NORTH);
+
+
+
+        JPanel buttonPanel =
+                new JPanel(
+                new GridLayout(3,2,20,20));
+
+
+        JButton bookRoom =
+                new JButton("Book Room");
+
+
+        JButton myBookings =
+                new JButton("My Bookings");
+
+
+        JButton payments =
+                new JButton("Payments");
+
+
+        JButton admin =
+                new JButton("Admin");
+
+
+        JButton logout =
+                new JButton("Logout");
+
+
 
         buttonPanel.add(bookRoom);
         buttonPanel.add(myBookings);
@@ -31,25 +88,62 @@ public class DashboardPanel extends JPanel {
         buttonPanel.add(admin);
         buttonPanel.add(logout);
 
+
         add(buttonPanel, BorderLayout.CENTER);
 
-        logout.addActionListener(e -> frame.showPanel("LOGIN"));
+
+
+        logout.addActionListener(e -> {
+
+            frame.setCurrentUser(null);
+
+            frame.showPanel("LOGIN");
+
+        });
+
+
 
         bookRoom.addActionListener(e ->
-                JOptionPane.showMessageDialog(this,
-                        "Booking page coming soon!"));
+                frame.showPanel("BOOKING"));
+
+
 
         myBookings.addActionListener(e ->
-                JOptionPane.showMessageDialog(this,
-                        "Bookings page coming soon!"));
+        		frame.showPanel("MY_BOOKINGS"));
+
+
 
         payments.addActionListener(e ->
-                JOptionPane.showMessageDialog(this,
-                        "Payment page coming soon!"));
+                frame.showPanel("PAYMENT"));
+
+
 
         admin.addActionListener(e ->
-                JOptionPane.showMessageDialog(this,
-                        "Admin page coming soon!"));
+                frame.showPanel("ADMIN"));
 
     }
+
+
+
+    public void refreshUser(User user) {
+
+
+        if(user != null) {
+
+            welcomeLabel.setText(
+                    "Welcome, "
+                    + user.getName()
+            );
+
+
+            userInfoLabel.setText(
+                    user.getEmail()
+                    + " | "
+                    + user.getStudentOrOrgID()
+            );
+
+        }
+
+    }
+
 }

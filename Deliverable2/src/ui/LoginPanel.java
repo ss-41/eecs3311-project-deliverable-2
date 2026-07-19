@@ -74,22 +74,18 @@ public class LoginPanel extends JPanel {
 
             if(user != null) {
 
-                frame.setCurrentUser(user);
+            	frame.setCurrentUser(user);
 
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Welcome " + user.getName()
-                );
+            	frame.getDashboardPanel().refreshUser(user);
+
+                JOptionPane.showMessageDialog(this,"Welcome " + user.getName());
 
                 frame.showPanel("DASHBOARD");
 
             }
             else {
 
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Invalid email or password."
-                );
+                JOptionPane.showMessageDialog(this,"Invalid email or password.");
 
             }
 

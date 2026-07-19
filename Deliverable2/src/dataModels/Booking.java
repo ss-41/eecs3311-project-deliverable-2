@@ -11,9 +11,11 @@ public class Booking implements Observer{
 	private BookingState bookingStatus; 
 	private LocalDateTime bookingTime; 
 	private LocalDateTime bookingEndTime; 
+	private int roomID;
 	
-	public Booking(int bookingID, double deposit, BookingState bookingStatus, LocalDateTime bookingTime, LocalDateTime bookingEndTime) {
-		this.bookingID = bookingID; 
+	public Booking(int bookingID, int roomID, double deposit, BookingState bookingStatus, LocalDateTime bookingTime, LocalDateTime bookingEndTime) {
+		this.bookingID = bookingID;
+		this.roomID = roomID;
 		this.deposit = deposit; 
 		this.bookingStatus = bookingStatus;
 		this.bookingTime = bookingTime; 
@@ -38,6 +40,34 @@ public class Booking implements Observer{
 	
 	public void update(Room room) {
 		
+	}
+	
+	public int getBookingID() {
+	    return bookingID;
+	}
+	
+	public int getRoomID() {
+	    return roomID;
+	}
+
+
+	public double getDeposit() {
+	    return deposit;
+	}
+
+
+	public String getStatus() {
+	    return bookingStatus.getClass().getSimpleName();
+	}
+
+
+	public LocalDateTime getBookingTime() {
+	    return bookingTime;
+	}
+
+
+	public LocalDateTime getBookingEndTime() {
+	    return bookingEndTime;
 	}
 
 }

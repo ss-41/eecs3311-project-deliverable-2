@@ -9,7 +9,8 @@ public class MainFrame extends JFrame {
     private CardLayout cardLayout;
     private JPanel mainPanel;
     private User currentUser;
-
+    private DashboardPanel dashboardPanel;
+    private MyBookingsPanel myBookingsPanel;
 
     public MainFrame() {
 
@@ -24,12 +25,20 @@ public class MainFrame extends JFrame {
 
 
         LoginPanel loginPanel = new LoginPanel(this);
-        DashboardPanel dashboardPanel = new DashboardPanel(this);
+        dashboardPanel = new DashboardPanel(this);
         RegisterPanel registerPanel = new RegisterPanel(this);
+        BookingPanel bookingPanel = new BookingPanel(this);
+        PaymentPanel paymentPanel = new PaymentPanel(this);
+        AdminPanel adminPanel = new AdminPanel(this);
+        myBookingsPanel = new MyBookingsPanel(this);
 
         mainPanel.add(registerPanel,"REGISTER");
         mainPanel.add(loginPanel, "LOGIN");
         mainPanel.add(dashboardPanel, "DASHBOARD");
+        mainPanel.add(bookingPanel,"BOOKING");
+        mainPanel.add(paymentPanel,"PAYMENT");
+        mainPanel.add(adminPanel,"ADMIN");
+        mainPanel.add(myBookingsPanel,"MY_BOOKINGS");
 
 
         add(mainPanel);
@@ -68,6 +77,11 @@ public class MainFrame extends JFrame {
 
     public User getCurrentUser() {
         return currentUser;
+    }
+    
+    
+    public DashboardPanel getDashboardPanel() {
+        return dashboardPanel;
     }
     
     
