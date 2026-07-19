@@ -139,7 +139,7 @@ public class DashboardPanel extends JPanel {
             userInfoLabel.setText(
                     user.getEmail()
                     + " | "
-                    + user.getStudentOrOrgID()
+                    + user.getStud_OR_orgID()
             );
 
         }

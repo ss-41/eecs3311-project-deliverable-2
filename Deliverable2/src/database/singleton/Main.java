@@ -3,6 +3,7 @@ package database.singleton;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import dataModels.AccountType;
 import dataModels.Booking;
 import dataModels.BookingStatus;
 import dataModels.Room;
@@ -20,8 +21,10 @@ public class Main {
 		}
 		
 		//create new users
-		User u1 = new User(6, "Jack Rey", "jack.rey@gmail.com", "B9cCfNshcJsupLMx0Q8u", "S123234529");
-		User u2 = new User(7, "Emma Grace", "emma.grace@gmail.com", "sh6RkMbMQVyBPxEhJnc0", "S1423254528");
+		AccountType a1 = new AccountType(1, "Student", 20.00); 
+		AccountType a2 = new AccountType(2, "Staff", 40.00); 
+		User u1 = new User(6, "Jack Rey", "jack.rey@gmail.com", "B9cCfNshcJsupLMx0Q8u", "S123234529", a1);
+		User u2 = new User(7, "Emma Grace", "emma.grace@gmail.com", "sh6RkMbMQVyBPxEhJnc0", "S1423254528", a2);
 		db.users.add(u1); 
 		db.users.add(u2);
 		

@@ -65,11 +65,16 @@ public class LoginPanel extends JPanel {
                     new String(passwordField.getPassword());
 
 
-            User user =
-                    accountController.login(
-                            email,
-                            password
-                    );
+            User user = null;
+			try {
+				user = accountController.login(
+				        email,
+				        password
+				);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 
 
             if(user != null) {

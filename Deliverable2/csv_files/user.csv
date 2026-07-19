@@ -1,8 +1,2 @@
-userID,name,email,password,stud_OR_orgID
-1,Olivia Martin,olivia.martin@email.com,d82mw3rw1xaskvH,S308341753
-2,Ethan Brown,ethan.brown@email.com,7gYqsaRZCeCK4dq,S798610159
-3,Sophia Wilson,sophia.wilson@email.com,DAB61KrcXqWwprP,O758375995
-4,Liam Johnson,liam.johnson@email.com,CKCrYmsQVLp8ETH,O879307404
-5,Ava Davis,ava.davis@email.com,5r1xEmenj7bg8MY,O221782844
-6,qwe,qwe@qwe,qwe,123
-7,Tom,tom@gmail.com,123,123
+userID,name,email,password,stud_OR_orgID,accountType
+8,Alice Chang,alice@university.edu,d82mw3rw1xaskvH,S508342756,Student

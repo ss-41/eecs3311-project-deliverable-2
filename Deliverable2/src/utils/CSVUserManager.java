@@ -19,7 +19,7 @@ public class CSVUserManager {
                     user.getName() + "," +
                     user.getEmail() + "," +
                     user.getPassword() + "," +
-                    user.getStudentOrOrgID() +
+                    user.getStud_OR_orgID() +
                     "\n");
 
             writer.close();

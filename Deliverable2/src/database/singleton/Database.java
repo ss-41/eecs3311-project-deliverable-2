@@ -72,7 +72,7 @@ public class Database {
                         readerRoom.get("building");
 
                 String stringRoomStatus =
-                        readerRoom.get("roomStatus");
+                        readerRoom.get("status");
 
                 RoomStatus roomStatus =
                         RoomStatus.valueOf(stringRoomStatus);
@@ -110,7 +110,7 @@ public class Database {
             csvOutputRoom.write("roomNum");
             csvOutputRoom.write("capacity");
             csvOutputRoom.write("building");
-            csvOutputRoom.write("roomStatus");
+            csvOutputRoom.write("status");
             csvOutputRoom.endRecord();
 
             for (Room room : rooms) {

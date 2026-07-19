@@ -24,6 +24,24 @@ public class User {
         this.stud_OR_orgID = stud_OR_orgID;
         this.accountType = accountType;
     }
+    
+    public User(
+            int userID,
+            String name,
+            String email,
+            String password,
+            String stud_OR_orgID
+            ) {
+
+        this.userID = userID;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.stud_OR_orgID = stud_OR_orgID;
+        this.accountType = null;
+    }
+    
+    
 
     public boolean register() {
         return false;

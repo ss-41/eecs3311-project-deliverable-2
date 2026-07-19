@@ -86,8 +86,8 @@ public class RegisterPanel extends JPanel {
 
                             new String(passwordField.getPassword()),
 
-                            organizationIDField.getText()
-
+                            organizationIDField.getText() 
+                            
                     );
 
             if(success) {
