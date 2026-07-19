@@ -1,6 +1,7 @@
 package database.singleton;
 import java.util.ArrayList;
 
+
 import dataModels.Booking;
 import dataModels.BookingStatus;
 import dataModels.Room;
@@ -15,6 +16,7 @@ import com.csvreader.CsvWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import booking.state.BookingState;
+import dataModels.AccountType;
 
 public class Database {
 	private static Database instance; 
@@ -195,7 +197,39 @@ public class Database {
 				String email = readerUser.get("email"); 
 				String password = readerUser.get("password"); 
 				String stud_OR_orgID = readerUser.get("stud_OR_orgID");
-				User u = new User(userID, name, email, password, stud_OR_orgID);
+				String accountTypeName = readerUser.get("accountType");
+				AccountType accountType;
+				switch (accountTypeName) {
+				    case "Student":
+				        accountType = new AccountType(1, "Student", 20.00);
+				        break;
+
+				    case "Faculty":
+				        accountType = new AccountType(2, "Faculty", 30.00);
+				        break;
+
+				    case "Staff":
+				        accountType = new AccountType(3, "Staff", 40.00);
+				        break;
+
+				    case "Partner":
+				        accountType = new AccountType(4, "Partner", 50.00);
+				        break;
+
+				    default:
+				        throw new IllegalArgumentException(
+				                "Invalid account type: " + accountTypeName);
+				}
+
+				User u = new User(
+				        userID,
+				        name,
+				        email,
+				        password,
+				        stud_OR_orgID,
+				        accountType
+				);
+
 				users.add(u);
 			}
 			readerUser.close();
