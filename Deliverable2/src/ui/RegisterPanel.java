@@ -2,6 +2,7 @@ package ui;
 
 import javax.swing.*;
 import java.awt.*;
+import controller.AccountController;
 
 public class RegisterPanel extends JPanel {
 
@@ -12,8 +13,13 @@ public class RegisterPanel extends JPanel {
         JPanel panel = new JPanel(new GridLayout(7,2,10,10));
 
         JTextField nameField = new JTextField();
+
         JTextField emailField = new JTextField();
+
         JPasswordField passwordField = new JPasswordField();
+
+        JTextField organizationIDField = new JTextField();
+
 
         String[] accountTypes = {
                 "Student",
@@ -40,6 +46,9 @@ public class RegisterPanel extends JPanel {
         panel.add(new JLabel("Password"));
         panel.add(passwordField);
 
+        panel.add(new JLabel("Student/Organization ID"));
+        panel.add(organizationIDField);
+
         panel.add(new JLabel("Account Type"));
         panel.add(typeBox);
 
@@ -51,17 +60,54 @@ public class RegisterPanel extends JPanel {
         backButton.addActionListener(e ->
                 frame.showLogin());
 
+        
+        final AccountController accountController = new AccountController();
+        
         registerButton.addActionListener(e -> {
 
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Account Created!\n\n"
-                    + "Name: " + nameField.getText()
-                    + "\nEmail: " + emailField.getText()
-                    + "\nType: " + typeBox.getSelectedItem()
-            );
+        	if(nameField.getText().isBlank()
+        	        || emailField.getText().isBlank()
+        	        || passwordField.getPassword().length == 0
+        	        || organizationIDField.getText().isBlank()) {
 
-            frame.showLogin();
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Please complete all fields including ID."
+                );
+                return;
+            }
+
+            boolean success =
+                    accountController.registerUser(
+
+                            nameField.getText(),
+
+                            emailField.getText(),
+
+                            new String(passwordField.getPassword()),
+
+                            organizationIDField.getText()
+
+                    );
+
+            if(success) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Account successfully created!"
+                );
+
+                frame.showLogin();
+
+            }
+            else {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Email already exists."
+                );
+
+            }
 
         });
 

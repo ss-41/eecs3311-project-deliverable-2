@@ -2,11 +2,13 @@ package ui;
 
 import javax.swing.*;
 import java.awt.*;
+import dataModels.User;
 
 public class MainFrame extends JFrame {
 
     private CardLayout cardLayout;
     private JPanel mainPanel;
+    private User currentUser;
 
 
     public MainFrame() {
@@ -57,4 +59,16 @@ public class MainFrame extends JFrame {
     public void showDashboard() {
         cardLayout.show(mainPanel, "DASHBOARD");
     }
+    
+    
+    //User getters
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+    
+    
 }
