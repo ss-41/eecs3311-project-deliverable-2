@@ -33,6 +33,8 @@ public class MainFrame extends JFrame {
         PaymentPanel paymentPanel = new PaymentPanel(this);
         AdminPanel adminPanel = new AdminPanel(this);
         myBookingsPanel = new MyBookingsPanel(this);
+        RoomManagementPanel roomManagementPanel = new RoomManagementPanel(this);
+        SensorPanel sensorPanel = new SensorPanel(this);
 
         mainPanel.add(registerPanel,"REGISTER");
         mainPanel.add(loginPanel, "LOGIN");
@@ -41,6 +43,8 @@ public class MainFrame extends JFrame {
         mainPanel.add(paymentPanel,"PAYMENT");
         mainPanel.add(adminPanel,"ADMIN");
         mainPanel.add(myBookingsPanel,"MY_BOOKINGS");
+        mainPanel.add(roomManagementPanel,"ROOM_MANAGEMENT");
+        mainPanel.add(sensorPanel,"SENSORS");
 
 
         add(mainPanel);
@@ -107,6 +111,8 @@ public class MainFrame extends JFrame {
         }
 
     }
+    
+    
     
     
 }

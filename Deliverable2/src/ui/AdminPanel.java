@@ -1,31 +1,29 @@
 package ui;
 
 import javax.swing.*;
-
-import controller.RoomController;
-
 import java.awt.*;
 
 public class AdminPanel extends JPanel {
 
-	private RoomController roomController = new RoomController();
-	
-    public AdminPanel(MainFrame frame) {
 
+    public AdminPanel(MainFrame frame) {
 
         setLayout(new BorderLayout());
 
 
         JLabel title =
                 new JLabel(
-                "Room Management",
-                SwingConstants.CENTER);
+                        "Admin Dashboard",
+                        SwingConstants.CENTER
+                );
 
 
         title.setFont(
-                new Font("Arial",
-                Font.BOLD,
-                24)
+                new Font(
+                        "Arial",
+                        Font.BOLD,
+                        24
+                )
         );
 
 
@@ -35,30 +33,30 @@ public class AdminPanel extends JPanel {
 
         JPanel buttons =
                 new JPanel(
-                new GridLayout(3,1,10,10)
-        );
+                        new GridLayout(3,1,10,10)
+                );
 
 
-        JButton addRoom =
-                new JButton("Add Room");
+        JButton manageRooms =
+                new JButton(
+                        "Manage Rooms"
+                );
 
 
-        JButton enableRoom =
-                new JButton("Enable Room");
-
-
-        JButton disableRoom =
-                new JButton("Disable Room");
+        JButton sensors =
+                new JButton(
+                        "View Sensors"
+                );
 
 
         JButton back =
-                new JButton("Back");
+                new JButton(
+                        "Back"
+                );
 
 
-
-        buttons.add(addRoom);
-        buttons.add(enableRoom);
-        buttons.add(disableRoom);
+        buttons.add(manageRooms);
+        buttons.add(sensors);
         buttons.add(back);
 
 
@@ -66,37 +64,19 @@ public class AdminPanel extends JPanel {
 
 
 
+        manageRooms.addActionListener(e ->
+                frame.showPanel("ROOM_MANAGEMENT")
+        );
+
+
+        sensors.addActionListener(e ->
+                frame.showPanel("SENSORS")
+        );
+
+
         back.addActionListener(e ->
                 frame.showPanel("DASHBOARD")
         );
-        
-        addRoom.addActionListener(e -> {
-
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Add room functionality"
-            );
-
-        });
-        
-        enableRoom.addActionListener(e -> {
-
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Enable room functionality"
-            );
-
-        });
-
-
-        disableRoom.addActionListener(e -> {
-
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Disable room functionality"
-            );
-
-        });
 
     }
 

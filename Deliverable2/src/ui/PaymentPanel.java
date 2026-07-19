@@ -14,14 +14,17 @@ public class PaymentPanel extends JPanel {
 
         JLabel title =
                 new JLabel(
-                "Payment",
-                SwingConstants.CENTER);
+                        "Payment",
+                        SwingConstants.CENTER
+                );
 
 
         title.setFont(
-                new Font("Arial",
-                Font.BOLD,
-                24)
+                new Font(
+                        "Arial",
+                        Font.BOLD,
+                        24
+                )
         );
 
 
@@ -31,23 +34,26 @@ public class PaymentPanel extends JPanel {
 
         JPanel panel =
                 new JPanel(
-                new GridLayout(4,1)
-        );
+                        new GridLayout(5,1,10,10)
+                );
 
 
         JRadioButton credit =
                 new JRadioButton(
-                "Credit Card");
+                        "Credit Card"
+                );
 
 
         JRadioButton debit =
                 new JRadioButton(
-                "Debit Card");
+                        "Debit Card"
+                );
 
 
         JRadioButton billing =
                 new JRadioButton(
-                "Institutional Billing");
+                        "Institutional Billing"
+                );
 
 
         ButtonGroup group =
@@ -60,20 +66,72 @@ public class PaymentPanel extends JPanel {
 
 
 
-        panel.add(credit);
-        panel.add(debit);
-        panel.add(billing);
-
+        JButton confirm =
+                new JButton(
+                        "Confirm Payment"
+                );
 
 
         JButton back =
-                new JButton("Back");
+                new JButton(
+                        "Back"
+                );
 
 
+
+        panel.add(credit);
+        panel.add(debit);
+        panel.add(billing);
+        panel.add(confirm);
         panel.add(back);
 
 
+
         add(panel, BorderLayout.CENTER);
+
+
+
+        confirm.addActionListener(e -> {
+
+
+            if(!credit.isSelected()
+                    && !debit.isSelected()
+                    && !billing.isSelected()) {
+
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Please select a payment method."
+                );
+
+                return;
+
+            }
+
+
+
+            String method = "";
+
+
+            if(credit.isSelected()) {
+                method = "Credit Card";
+            }
+            else if(debit.isSelected()) {
+                method = "Debit Card";
+            }
+            else {
+                method = "Institutional Billing";
+            }
+
+
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Payment successful using "
+                    + method
+            );
+
+        });
 
 
 

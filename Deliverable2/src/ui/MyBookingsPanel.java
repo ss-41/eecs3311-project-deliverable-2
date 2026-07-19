@@ -18,8 +18,14 @@ public class MyBookingsPanel extends JPanel {
             new BookingController();
 
 
+    private MainFrame frame;
+
+
 
     public MyBookingsPanel(MainFrame frame) {
+
+
+        this.frame = frame;
 
 
         setLayout(new BorderLayout());
@@ -29,17 +35,25 @@ public class MyBookingsPanel extends JPanel {
         JLabel title =
                 new JLabel(
                         "My Bookings",
-                        SwingConstants.CENTER);
+                        SwingConstants.CENTER
+                );
+
+
+        title.setFont(
+                new Font(
+                        "Arial",
+                        Font.BOLD,
+                        24
+                )
+        );
 
 
 
-        add(title,BorderLayout.NORTH);
+        add(title, BorderLayout.NORTH);
 
 
 
-        bookingArea =
-                new JTextArea();
-
+        bookingArea = new JTextArea();
 
         bookingArea.setEditable(false);
 
@@ -47,7 +61,13 @@ public class MyBookingsPanel extends JPanel {
 
         add(
                 new JScrollPane(bookingArea),
-                BorderLayout.CENTER);
+                BorderLayout.CENTER
+        );
+
+
+
+        JPanel buttons =
+                new JPanel();
 
 
 
@@ -60,17 +80,13 @@ public class MyBookingsPanel extends JPanel {
 
 
 
-        JPanel buttons =
-                new JPanel();
-
-
         buttons.add(refresh);
 
         buttons.add(back);
 
 
 
-        add(buttons,BorderLayout.SOUTH);
+        add(buttons, BorderLayout.SOUTH);
 
 
 
@@ -92,40 +108,73 @@ public class MyBookingsPanel extends JPanel {
 
     private void loadBookings() {
 
+
         bookingArea.setText("");
+
+
+
+        if(frame.getCurrentUser() == null) {
+
+            bookingArea.append(
+                    "Please login first."
+            );
+
+            return;
+
+        }
+
+
 
 
         ArrayList<Booking> bookings =
                 controller.getBookings();
 
 
+
+        boolean found = false;
+
+
+
+
         for(Booking booking : bookings) {
 
 
-            bookingArea.append(
-                    "Booking ID: "
-                    + booking.getBookingID()
 
-                    + "\nRoom ID: "
-                    + booking.getRoomID()
+            if(booking.getUserID()
+                    == frame.getCurrentUser().getUserID()) {
 
-                    + "\nDeposit: "
-                    + booking.getDeposit()
 
-                    + "\nStatus: "
-                    + booking.getBookingStatus()
 
-                    + "\nStart: "
-                    + booking.getBookingTime()
+                bookingArea.append(
+                        booking.toString()
+                        + "\n\n"
+                );
 
-                    + "\nEnd: "
-                    + booking.getBookingEndTime()
 
-                    + "\n\n"
-            );
+
+                found = true;
+
+
+            }
+
 
         }
 
+
+
+
+        if(!found) {
+
+
+            bookingArea.append(
+                    "No bookings found."
+            );
+
+
+        }
+
+
     }
+
 
 }

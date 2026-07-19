@@ -114,7 +114,8 @@ public class Database {
 			readerBooking = new CsvReader(pathBookings);
 			readerBooking.readHeaders();
 			while (readerBooking.readRecord()) {
-				int bookingID = Integer.valueOf(readerBooking.get("bookingID")); 
+				int bookingID = Integer.valueOf(readerBooking.get("bookingID"));
+				int userID = Integer.valueOf(readerBooking.get("userID"));
 				int roomID = Integer.valueOf(readerBooking.get("roomID"));
 				Double deposit = Double.valueOf(readerBooking.get("deposit")); 
 				String stringBookingStatus = readerBooking.get("bookingStatus"); 
@@ -123,7 +124,7 @@ public class Database {
 				LocalDateTime bookingTime = LocalDateTime.parse(stringBookingTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 				String stringBookingEndTime = readerBooking.get("bookingEndTime");
 				LocalDateTime bookingEndTime = LocalDateTime.parse(stringBookingEndTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-				Booking b = new Booking(bookingID, roomID, deposit, bookingStatus, bookingTime, bookingEndTime);
+				Booking b = new Booking(bookingID, userID, roomID, deposit, bookingStatus, bookingTime, bookingEndTime);
 				bookings.add(b);
 			}
 			readerBooking.close();

@@ -49,7 +49,7 @@ public class Main {
 		
 		//delete the first booking and add another one into the database
 		db2.deleteBooking(db2.bookings.get(0));
-		db2.bookings.add(new Booking(7, 2,20.00, BookingStatus.ACTIVE, LocalDateTime.now(), LocalDateTime.of(2026, 7, 25, 15, 30)));
+		db2.bookings.add(new Booking(7, 2, 2 , 20.00, BookingStatus.ACTIVE, LocalDateTime.now(), LocalDateTime.of(2026, 7, 25, 15, 30)));
 		db2.storeBookings();
 		
 		//show updated bookings in database
