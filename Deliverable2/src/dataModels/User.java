@@ -6,13 +6,24 @@ public class User {
 	private String email; 
 	private String password; 
 	private String stud_OR_orgID; 
+	private AccountType accountType;
 	
-	public User(int userID, String name, String email, String password, String stud_OR_orgID) {
+	public User(int userID, String name, String email, String password, String stud_OR_orgID, AccountType accountType) {
 		this.userID = userID; 
 		this.name = name; 
 		this.email = email; 
 		this.password = password; 
-		this.stud_OR_orgID = stud_OR_orgID; 
+		this.stud_OR_orgID = stud_OR_orgID;
+		this.accountType = accountType;
+		
+	}
+	
+	public int getUserID() {
+	    return userID;
+	}
+	
+	public AccountType getAccountType() {
+		return accountType;
 	}
 	
 	public boolean register() {
