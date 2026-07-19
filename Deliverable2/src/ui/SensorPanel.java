@@ -123,7 +123,8 @@ public class SensorPanel extends JPanel {
                             "Test User",
                             "test@yorku.ca",
                             "password",
-                            "12345"
+                            "12345",
+                            false
                     ),
                     true
             );

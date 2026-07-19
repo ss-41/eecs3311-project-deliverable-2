@@ -107,26 +107,80 @@ public class BookingController {
     }
 
 
-
-
     public ArrayList<Booking> getBookings() {
+        try {
 
+            database.loadBookings();
+
+        } catch(Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return database.bookings;
+    }
+    
+    
+    public boolean extendBooking(int bookingID) {
 
         try {
 
             database.loadBookings();
 
+            for(Booking booking : database.bookings) {
+
+                if(booking.getBookingID() == bookingID) {
+
+                    if(booking.getBookingStatus() != dataModels.BookingStatus.ACTIVE)
+                        return false;
+
+                    booking.setBookingEndTime(
+                            booking.getBookingEndTime().plusHours(1)
+                    );
+
+                    database.storeBookings();
+
+                    return true;
+                }
+            }
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    public boolean cancelBooking(int bookingID, int userID) {
+
+        try {
+            database.loadBookings();
+
+            for(Booking booking : database.bookings) {
+
+
+                if(booking.getBookingID() == bookingID
+                        && booking.getUserID() == userID) {
+
+                    if(LocalDateTime.now()
+                            .isBefore(booking.getBookingEndTime())) {
+
+                        booking.setBookingStatus(
+                                dataModels.BookingStatus.CANCELLED
+                        );
+
+                        database.storeBookings();
+
+                        return true;
+                    }
+                }
+            }
 
         } catch(Exception e) {
 
             e.printStackTrace();
 
         }
-
-
-
-        return database.bookings;
-
+        return false;
     }
 
 

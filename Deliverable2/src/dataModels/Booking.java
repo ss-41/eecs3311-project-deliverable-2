@@ -30,7 +30,7 @@ public class Booking implements Observer {
             LocalDateTime bookingEndTime
     ) {
 
-        this.bookingID = bookingID;
+    	this.bookingID = bookingID;
         this.userID = userID;
         this.roomID = roomID;
         this.deposit = deposit;
@@ -99,13 +99,15 @@ public class Booking implements Observer {
         return bookingEndTime;
     }
 
-
-
     public void setBookingStatus(BookingStatus status){
         this.bookingStatus = status;
     }
+    
+    public void setBookingEndTime(LocalDateTime bookingEndTime) {
 
+        this.bookingEndTime = bookingEndTime;
 
+    }
 
     public String getStatus(){
 

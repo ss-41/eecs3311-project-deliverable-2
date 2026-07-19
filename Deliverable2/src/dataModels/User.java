@@ -5,14 +5,16 @@ public class User {
 	private String name; 
 	private String email; 
 	private String password; 
-	private String stud_OR_orgID; 
+	private String stud_OR_orgID;
+	private boolean admin;
 	
-	public User(int userID, String name, String email, String password, String stud_OR_orgID) {
+	public User(int userID, String name, String email, String password, String stud_OR_orgID, boolean admin) {
 		this.userID = userID; 
 		this.name = name; 
 		this.email = email; 
 		this.password = password; 
 		this.stud_OR_orgID = stud_OR_orgID; 
+		this.admin = admin;
 	}
 	
 	public int getUserID() {
@@ -84,6 +86,15 @@ public class User {
 
 	public void setStud_OR_orgID(String stud_OR_orgID) {
 		this.stud_OR_orgID = stud_OR_orgID;
+	}
+	
+	public boolean isAdmin() {
+	    return admin;
+	}
+
+
+	public void setAdmin(boolean admin) {
+	    this.admin = admin;
 	}
 	
 	@Override

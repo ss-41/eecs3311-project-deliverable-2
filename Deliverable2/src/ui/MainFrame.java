@@ -11,6 +11,7 @@ public class MainFrame extends JFrame {
     private User currentUser;
     private DashboardPanel dashboardPanel;
     private MyBookingsPanel myBookingsPanel;
+    private AdminPanel adminPanel;
 
     public MainFrame() {
 
@@ -31,7 +32,7 @@ public class MainFrame extends JFrame {
         RegisterPanel registerPanel = new RegisterPanel(this);
         BookingPanel bookingPanel = new BookingPanel(this);
         PaymentPanel paymentPanel = new PaymentPanel(this);
-        AdminPanel adminPanel = new AdminPanel(this);
+        adminPanel = new AdminPanel(this);
         myBookingsPanel = new MyBookingsPanel(this);
         RoomManagementPanel roomManagementPanel = new RoomManagementPanel(this);
         SensorPanel sensorPanel = new SensorPanel(this);
@@ -56,6 +57,9 @@ public class MainFrame extends JFrame {
     public void showPanel(String panelName) {
         if(panelName.equals("DASHBOARD")) {
             dashboardPanel.refreshUser(currentUser);
+        }
+        if(panelName.equals("ADMIN")) {
+            adminPanel.refreshAdmin(currentUser);
         }
         cardLayout.show(mainPanel, panelName);
     }

@@ -139,6 +139,7 @@ public class Database {
 		CsvWriter csvOutputBooking = new CsvWriter(new FileWriter(pathBookings, false), ',');
 		try {
 			csvOutputBooking.write("bookingID");
+			csvOutputBooking.write("userID");
 			csvOutputBooking.write("roomID");
 			csvOutputBooking.write("deposit");
 			csvOutputBooking.write("bookingStatus");
@@ -148,6 +149,7 @@ public class Database {
 			
 			for (Booking b: bookings) {
 				csvOutputBooking.write(String.valueOf(b.getBookingID()));
+			    csvOutputBooking.write(String.valueOf(b.getUserID()));
 				csvOutputBooking.write(String.valueOf(b.getRoomID()));
 				csvOutputBooking.write(String.valueOf(b.getDeposit()));
 				String stringBookingStatus = b.getBookingStatus().name();
@@ -198,7 +200,8 @@ public class Database {
 				String email = readerUser.get("email"); 
 				String password = readerUser.get("password"); 
 				String stud_OR_orgID = readerUser.get("stud_OR_orgID");
-				User u = new User(userID, name, email, password, stud_OR_orgID);
+				boolean admin =Boolean.valueOf(readerUser.get("admin"));
+				User u = new User(userID, name, email, password, stud_OR_orgID,admin);
 				users.add(u);
 			}
 			readerUser.close();
@@ -218,6 +221,7 @@ public class Database {
 			csvOutputUser.write("email");
 			csvOutputUser.write("password");
 			csvOutputUser.write("stud_OR_orgID");
+			csvOutputUser.write("admin");
 			csvOutputUser.endRecord();
 			
 			for (User u: users) {
@@ -226,6 +230,7 @@ public class Database {
 				csvOutputUser.write(u.getEmail());
 				csvOutputUser.write(u.getPassword());
 				csvOutputUser.write(u.getStud_OR_orgID());
+				csvOutputUser.write(String.valueOf(u.isAdmin()));
 				csvOutputUser.endRecord();
 			}
 			csvOutputUser.close();
@@ -281,6 +286,18 @@ public class Database {
 	    }
 
 	    return available;
+	}
+	
+	public Room getRoomByID(int roomID) {
+
+	    for(Room room : rooms) {
+
+	        if(room.getRoomID() == roomID)
+	            return room;
+
+	    }
+
+	    return null;
 	}
 	
 }

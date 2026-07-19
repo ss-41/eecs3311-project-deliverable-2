@@ -20,8 +20,8 @@ public class Main {
 		}
 		
 		//create new users
-		User u1 = new User(6, "Jack Rey", "jack.rey@gmail.com", "B9cCfNshcJsupLMx0Q8u", "S123234529");
-		User u2 = new User(7, "Emma Grace", "emma.grace@gmail.com", "sh6RkMbMQVyBPxEhJnc0", "S1423254528");
+		User u1 = new User(6, "Jack Rey", "jack.rey@gmail.com", "B9cCfNshcJsupLMx0Q8u", "S123234529", true);
+		User u2 = new User(7, "Emma Grace", "emma.grace@gmail.com", "sh6RkMbMQVyBPxEhJnc0", "S1423254528", false);
 		db.users.add(u1); 
 		db.users.add(u2);
 		

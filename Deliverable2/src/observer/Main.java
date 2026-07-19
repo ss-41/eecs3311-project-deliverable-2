@@ -15,7 +15,7 @@ public class Main {
 	public static void main(String[] args) {
 		 
 		//create a new user that's not in the database 
-		User u1 = new User(8, "Alice Chang", "alice@university.edu", "d82mw3rw1xaskvH", "S508342756");
+		User u1 = new User(8, "Alice Chang", "alice@university.edu", "d82mw3rw1xaskvH", "S508342756", true);
 		
 		Room r1 = new Room(10, "A105", 4, "Engineering Building", RoomStatus.AVAILABLE, null);
 		Booking b1 = new Booking(8, r1.getRoomID(), 2, 20.00, BookingStatus.ACTIVE, LocalDateTime.now(), LocalDateTime.of(2026, 7, 25, 10, 30));

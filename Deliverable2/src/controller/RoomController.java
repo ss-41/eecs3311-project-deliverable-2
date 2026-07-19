@@ -41,5 +41,38 @@ public class RoomController {
 
         return availableRooms;
     }
+    
+    public boolean addRoom(Room room) {
+
+        database.rooms.add(room);
+
+        try {
+
+            database.storeRooms();
+            return true;
+
+        } catch(Exception e) {
+
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+
+    public boolean deleteRoom(Room room) {
+
+        try {
+
+            database.deleteRoom(room);
+            return true;
+
+        } catch(Exception e) {
+
+            e.printStackTrace();
+            return false;
+        }
+
+    }
 
 }
