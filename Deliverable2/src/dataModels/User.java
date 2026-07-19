@@ -37,6 +37,10 @@ public class User {
         return null;
     }
 
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
+
     public boolean extendBooking() {
         return false;
     }
@@ -45,6 +49,7 @@ public class User {
         return false;
     }
 
+
     public void update(Room room) {
         
     }
@@ -52,11 +57,7 @@ public class User {
     public int getUserID() {
         return userID;
     }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
+    
     public String getName() {
         return name;
     }

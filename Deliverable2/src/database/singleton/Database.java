@@ -1,345 +1,563 @@
 package database.singleton;
+
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import com.csvreader.CsvReader;
+import com.csvreader.CsvWriter;
+
+import dataModels.AccountType;
 import dataModels.Booking;
 import dataModels.BookingStatus;
 import dataModels.Room;
 import dataModels.RoomStatus;
 import dataModels.User;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import com.csvreader.CsvReader;
-import com.csvreader.CsvWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import booking.state.BookingState;
-import dataModels.AccountType;
 
 public class Database {
-	private static Database instance; 
-	private static String pathRooms = "src/csv_files/room.csv";
-	private static String pathBookings = "src/csv_files/booking.csv";
-	private static String pathUsers = "src/csv_files/user.csv";
-	
-	public ArrayList<User> users = new ArrayList<User>();
-	public ArrayList<Booking> bookings = new ArrayList<Booking>();
-	public ArrayList<Room> rooms = new ArrayList<Room>();
-	
-	private Database() {
-		
-	}
-	
-	public static Database getInstance() {
-		if (instance == null) {
-			instance = new Database(); 
-		}
-		return instance;
-	}
-	
-	//load rooms from csv file
-	public void loadRooms() throws Exception{
-		CsvReader readerRoom;
-		try {
-			rooms.clear();
-			readerRoom = new CsvReader(pathRooms);
-			readerRoom.readHeaders();
-			while (readerRoom.readRecord()) {
-				int roomID = Integer.valueOf(readerRoom.get("roomID"));
-				String roomNum = readerRoom.get("roomNum");
-				int capacity = Integer.valueOf(readerRoom.get("capacity")); 
-				String building = readerRoom.get("building");
-				String stringRoomStatus = readerRoom.get("status"); 
-				RoomStatus roomStatus = RoomStatus.valueOf(stringRoomStatus);
-				Room r = new Room(roomID, roomNum, capacity, building, roomStatus, null);
-				rooms.add(r);
-			}
-			readerRoom.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	}
-	
-	//store rooms in csv file 
-	public void storeRooms() throws Exception{
-		CsvWriter csvOutputRoom = new CsvWriter(new FileWriter(pathRooms, false), ',');
-		try {
-			csvOutputRoom.write("roomID");
-			csvOutputRoom.write("roomNum");
-			csvOutputRoom.write("capacity");
-			csvOutputRoom.write("building");
-			csvOutputRoom.write("roomStatus");
-			csvOutputRoom.endRecord();
-			
-			for (Room r: rooms) {
-				csvOutputRoom.write(String.valueOf(r.getRoomID()));
-				csvOutputRoom.write(r.getRoomNum());
-				csvOutputRoom.write(String.valueOf(r.getCapacity()));
-				csvOutputRoom.write(r.getBuilding());
-				csvOutputRoom.write(r.getStatus().name());
-				csvOutputRoom.endRecord();
-			}
-			csvOutputRoom.close();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	//removes room from csv file 
-	public void deleteRoom(Room room) {
-		Room rToRemove = null;
-		for (Room r: rooms) {
-			if (r.getRoomID() == room.getRoomID()) {
-				rToRemove = r;
-			}
-		}
-		rooms.remove(rToRemove);
-		
-		try {
-			instance.storeRooms();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	
-	//load bookings from csv file
-	public void loadBookings() throws Exception{
-		CsvReader readerBooking;
-		try {
-			bookings.clear();
-			readerBooking = new CsvReader(pathBookings);
-			readerBooking.readHeaders();
-			while (readerBooking.readRecord()) {
-				int bookingID = Integer.valueOf(readerBooking.get("bookingID")); 
-				Double deposit = Double.valueOf(readerBooking.get("deposit")); 
-				String stringBookingStatus = readerBooking.get("bookingStatus"); 
-				BookingStatus bookingStatus = BookingStatus.valueOf(stringBookingStatus);
-				String stringBookingTime = readerBooking.get("bookingTime"); 
-				LocalDateTime bookingTime = LocalDateTime.parse(stringBookingTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-				String stringBookingEndTime = readerBooking.get("bookingEndTime");
-				LocalDateTime bookingEndTime = LocalDateTime.parse(stringBookingEndTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-				Booking b = new Booking(bookingID, deposit, bookingStatus, bookingTime, bookingEndTime);
-				bookings.add(b);
-			}
-			readerBooking.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		 
-	}
-	
-	public void storeBookings() throws Exception{
-		CsvWriter csvOutputBooking = new CsvWriter(new FileWriter(pathBookings, false), ',');
-		try {
-			csvOutputBooking.write("bookingID");
-			csvOutputBooking.write("deposit");
-			csvOutputBooking.write("bookingStatus");
-			csvOutputBooking.write("bookingTime");
-			csvOutputBooking.write("bookingEndTime");
-			csvOutputBooking.endRecord();
-			
-			for (Booking b: bookings) {
-				csvOutputBooking.write(String.valueOf(b.getBookingID()));
-				csvOutputBooking.write(String.valueOf(b.getDeposit()));
-				String stringBookingStatus = b.getBookingStatus().name();
-				csvOutputBooking.write(stringBookingStatus);
-				String stringBookingTime = b.getBookingTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-				csvOutputBooking.write(stringBookingTime);
-				String stringBookingEndTime = b.getBookingEndTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-				csvOutputBooking.write(stringBookingEndTime);
-				csvOutputBooking.endRecord();
-			}
-			csvOutputBooking.close();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	//removes booking from csv file 
-		public void deleteBooking(Booking booking) {
-			Booking bToRemove = null;
-			for (Booking b: bookings) {
-				if (b.getBookingID() == booking.getBookingID()) {
-					bToRemove = b;
-				}
-			}
-			bookings.remove(bToRemove);
-			
-			try {
-				instance.storeBookings();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-	
-	//loads users from csv file
-	public void loadUsers() throws Exception{
-		CsvReader readerUser;
-		try {
-			users.clear();
-			readerUser = new CsvReader(pathUsers);
-			readerUser.readHeaders();
-			while (readerUser.readRecord()) {
-				int userID = Integer.valueOf(readerUser.get("userID")); 
-				String name = readerUser.get("name"); 
-				String email = readerUser.get("email"); 
-				String password = readerUser.get("password"); 
-				String stud_OR_orgID = readerUser.get("stud_OR_orgID");
-				String accountTypeName = readerUser.get("accountType");
-				AccountType accountType;
-				switch (accountTypeName) {
-				    case "Student":
-				        accountType = new AccountType(1, "Student", 20.00);
-				        break;
 
-				    case "Faculty":
-				        accountType = new AccountType(2, "Faculty", 30.00);
-				        break;
+    private static Database instance;
 
-				    case "Staff":
-				        accountType = new AccountType(3, "Staff", 40.00);
-				        break;
+    private static final String pathRooms =
+            "csv_files/room.csv";
 
-				    case "Partner":
-				        accountType = new AccountType(4, "Partner", 50.00);
-				        break;
+    private static final String pathBookings =
+            "csv_files/booking.csv";
 
-				    default:
-				        throw new IllegalArgumentException(
-				                "Invalid account type: " + accountTypeName);
-				}
+    private static final String pathUsers =
+            "csv_files/user.csv";
 
-				User u = new User(
-				        userID,
-				        name,
-				        email,
-				        password,
-				        stud_OR_orgID,
-				        accountType
-				);
+    public ArrayList<User> users = new ArrayList<>();
+    public ArrayList<Booking> bookings = new ArrayList<>();
+    public ArrayList<Room> rooms = new ArrayList<>();
 
-				users.add(u);
-			}
-			readerUser.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		 
-	}
-	
-	//writes users to csv file
-	public void storeUsers() throws Exception{
-		CsvWriter csvOutputUser = new CsvWriter(new FileWriter(pathUsers, false), ',');
-		try {
-			csvOutputUser.write("userID");
-			csvOutputUser.write("name");
-			csvOutputUser.write("email");
-			csvOutputUser.write("password");
-			csvOutputUser.write("stud_OR_orgID");
-			csvOutputUser.write("accountType");
-			csvOutputUser.endRecord();
-			
-			for (User u: users) {
-				csvOutputUser.write(String.valueOf(u.getUserID()));
-				csvOutputUser.write(u.getName());
-				csvOutputUser.write(u.getEmail());
-				csvOutputUser.write(u.getPassword());
-				csvOutputUser.write(u.getStud_OR_orgID());
-				csvOutputUser.write(u.getAccountType().getTypeName());
-				csvOutputUser.endRecord();
-			}
-			csvOutputUser.close();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public void addUser(User user) throws Exception {
-	    users.add(user);
-	    storeUsers();
-	}
-	
-	 
-	public void deleteUser(User user) {
-		User uToRemove = null;
-		for (User u: users) {
-			if (u.getUserID() == user.getUserID()) {
-				uToRemove = u;
-			}
-		}
-		users.remove(uToRemove);
-		
-		try {
-			instance.storeUsers();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public int getNextUserID() {
-	    int maxID = 0;
+    private Database() {
+    }
 
-	    for (User u : users) {
-	        if (u.getUserID() > maxID) {
-	            maxID = u.getUserID();
-	        }
-	    }
+    public static Database getInstance() {
+        if (instance == null) {
+            instance = new Database();
+        }
 
-	    return maxID + 1;
-	}
-	
-	public boolean emailExists(String email) {
-	    if (email == null) {
-	        return false;
-	    }
+        return instance;
+    }
 
-	    for (User user : users) {
-	        if (user.getEmail().equalsIgnoreCase(email.trim())) {
-	            return true;
-	        }
-	    }
+    // Loads rooms from room.csv.
+    public void loadRooms() throws Exception {
 
-	    return false;
-	}
-	
-	public User validateLogin(String email, String password) {
-	    if (email == null || password == null) {
-	        return null;
-	    }
+        try {
+            rooms.clear();
 
-	    for (User user : users) {
-	        boolean emailMatches =
-	                user.getEmail().equalsIgnoreCase(email.trim());
+            CsvReader readerRoom = new CsvReader(pathRooms);
+            readerRoom.readHeaders();
 
-	        boolean passwordMatches =
-	                user.getPassword().equals(password);
+            while (readerRoom.readRecord()) {
 
-	        if (emailMatches && passwordMatches) {
-	            return user;
-	        }
-	    }
+                int roomID =
+                        Integer.parseInt(
+                                readerRoom.get("roomID")
+                        );
 
-	    return null;
-	}
-	
-	
-	
-	
+                String roomNum =
+                        readerRoom.get("roomNum");
+
+                int capacity =
+                        Integer.parseInt(
+                                readerRoom.get("capacity")
+                        );
+
+                String building =
+                        readerRoom.get("building");
+
+                String stringRoomStatus =
+                        readerRoom.get("roomStatus");
+
+                RoomStatus roomStatus =
+                        RoomStatus.valueOf(stringRoomStatus);
+
+                Room room = new Room(
+                        roomID,
+                        roomNum,
+                        capacity,
+                        building,
+                        roomStatus,
+                        null
+                );
+
+                rooms.add(room);
+            }
+
+            readerRoom.close();
+
+        } catch (FileNotFoundException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    // Writes rooms to room.csv.
+    public void storeRooms() throws Exception {
+
+        CsvWriter csvOutputRoom =
+                new CsvWriter(
+                        new FileWriter(pathRooms, false),
+                        ','
+                );
+
+        try {
+            csvOutputRoom.write("roomID");
+            csvOutputRoom.write("roomNum");
+            csvOutputRoom.write("capacity");
+            csvOutputRoom.write("building");
+            csvOutputRoom.write("roomStatus");
+            csvOutputRoom.endRecord();
+
+            for (Room room : rooms) {
+
+                csvOutputRoom.write(
+                        String.valueOf(room.getRoomID())
+                );
+
+                csvOutputRoom.write(room.getRoomNum());
+
+                csvOutputRoom.write(
+                        String.valueOf(room.getCapacity())
+                );
+
+                csvOutputRoom.write(room.getBuilding());
+
+                csvOutputRoom.write(
+                        room.getStatus().name()
+                );
+
+                csvOutputRoom.endRecord();
+            }
+
+        } finally {
+            csvOutputRoom.close();
+        }
+    }
+
+    // Removes a room and updates room.csv.
+    public void deleteRoom(Room room) {
+
+        Room roomToRemove = null;
+
+        for (Room currentRoom : rooms) {
+            if (currentRoom.getRoomID() == room.getRoomID()) {
+                roomToRemove = currentRoom;
+                break;
+            }
+        }
+
+        if (roomToRemove == null) {
+            return;
+        }
+
+        rooms.remove(roomToRemove);
+
+        try {
+            storeRooms();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void loadBookings() throws Exception {
+
+        try {
+            bookings.clear();
+
+            CsvReader readerBooking =
+                    new CsvReader(pathBookings);
+
+            readerBooking.readHeaders();
+
+            DateTimeFormatter formatter =
+                    DateTimeFormatter.ofPattern(
+                            "yyyy-MM-dd HH:mm"
+                    );
+
+            while (readerBooking.readRecord()) {
+
+                int bookingID =
+                        Integer.parseInt(
+                                readerBooking.get("bookingID")
+                        );
+
+                int roomID =
+                        Integer.parseInt(
+                                readerBooking.get("roomID")
+                        );
+
+                double deposit =
+                        Double.parseDouble(
+                                readerBooking.get("deposit")
+                        );
+
+                String stringBookingStatus =
+                        readerBooking.get("bookingStatus");
+
+                BookingStatus bookingStatus =
+                        BookingStatus.valueOf(
+                                stringBookingStatus
+                        );
+
+                LocalDateTime bookingTime =
+                        LocalDateTime.parse(
+                                readerBooking.get("bookingTime"),
+                                formatter
+                        );
+
+                LocalDateTime bookingEndTime =
+                        LocalDateTime.parse(
+                                readerBooking.get("bookingEndTime"),
+                                formatter
+                        );
+
+                Booking booking = new Booking(
+                        bookingID,
+                        roomID,
+                        deposit,
+                        bookingStatus,
+                        bookingTime,
+                        bookingEndTime
+                );
+
+                bookings.add(booking);
+            }
+
+            readerBooking.close();
+
+        } catch (FileNotFoundException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    // Writes bookings to booking.csv.
+    public void storeBookings() throws Exception {
+
+        CsvWriter csvOutputBooking =
+                new CsvWriter(
+                        new FileWriter(pathBookings, false),
+                        ','
+                );
+
+        try {
+            csvOutputBooking.write("bookingID");
+            csvOutputBooking.write("roomID");
+            csvOutputBooking.write("deposit");
+            csvOutputBooking.write("bookingStatus");
+            csvOutputBooking.write("bookingTime");
+            csvOutputBooking.write("bookingEndTime");
+            csvOutputBooking.endRecord();
+
+            DateTimeFormatter formatter =
+                    DateTimeFormatter.ofPattern(
+                            "yyyy-MM-dd HH:mm"
+                    );
+
+            for (Booking booking : bookings) {
+
+                csvOutputBooking.write(
+                        String.valueOf(
+                                booking.getBookingID()
+                        )
+                );
+
+                csvOutputBooking.write(
+                        String.valueOf(
+                                booking.getRoomID()
+                        )
+                );
+
+                csvOutputBooking.write(
+                        String.valueOf(
+                                booking.getDeposit()
+                        )
+                );
+
+                csvOutputBooking.write(
+                        booking.getBookingStatus().name()
+                );
+
+                csvOutputBooking.write(
+                        booking.getBookingTime()
+                                .format(formatter)
+                );
+
+                csvOutputBooking.write(
+                        booking.getBookingEndTime()
+                                .format(formatter)
+                );
+
+                csvOutputBooking.endRecord();
+            }
+
+        } finally {
+            csvOutputBooking.close();
+        }
+    }
+
+    // Removes a booking and updates booking.csv.
+    public void deleteBooking(Booking booking) {
+
+        Booking bookingToRemove = null;
+
+        for (Booking currentBooking : bookings) {
+            if (currentBooking.getBookingID()
+                    == booking.getBookingID()) {
+
+                bookingToRemove = currentBooking;
+                break;
+            }
+        }
+
+        if (bookingToRemove == null) {
+            return;
+        }
+
+        bookings.remove(bookingToRemove);
+
+        try {
+            storeBookings();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    // Loads users from user.csv.
+    public void loadUsers() throws Exception {
+
+        try {
+            users.clear();
+
+            CsvReader readerUser =
+                    new CsvReader(pathUsers);
+
+            readerUser.readHeaders();
+
+            while (readerUser.readRecord()) {
+
+                int userID =
+                        Integer.parseInt(
+                                readerUser.get("userID")
+                        );
+
+                String name =
+                        readerUser.get("name");
+
+                String email =
+                        readerUser.get("email");
+
+                String password =
+                        readerUser.get("password");
+
+                String stud_OR_orgID =
+                        readerUser.get("stud_OR_orgID");
+
+                String accountTypeName =
+                        readerUser.get("accountType");
+
+                AccountType accountType =
+                        createAccountType(accountTypeName);
+
+                User user = new User(
+                        userID,
+                        name,
+                        email,
+                        password,
+                        stud_OR_orgID,
+                        accountType
+                );
+
+                users.add(user);
+            }
+
+            readerUser.close();
+
+        } catch (FileNotFoundException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    // Writes users to user.csv.
+    public void storeUsers() throws Exception {
+
+        CsvWriter csvOutputUser =
+                new CsvWriter(
+                        new FileWriter(pathUsers, false),
+                        ','
+                );
+
+        try {
+            csvOutputUser.write("userID");
+            csvOutputUser.write("name");
+            csvOutputUser.write("email");
+            csvOutputUser.write("password");
+            csvOutputUser.write("stud_OR_orgID");
+            csvOutputUser.write("accountType");
+            csvOutputUser.endRecord();
+
+            for (User user : users) {
+
+                csvOutputUser.write(
+                        String.valueOf(user.getUserID())
+                );
+
+                csvOutputUser.write(user.getName());
+                csvOutputUser.write(user.getEmail());
+                csvOutputUser.write(user.getPassword());
+
+                csvOutputUser.write(
+                        user.getStud_OR_orgID()
+                );
+
+                csvOutputUser.write(
+                        user.getAccountType().getTypeName()
+                );
+
+                csvOutputUser.endRecord();
+            }
+
+        } finally {
+            csvOutputUser.close();
+        }
+    }
+
+    public void addUser(User user) throws Exception {
+        users.add(user);
+        storeUsers();
+    }
+
+    // Removes a user and updates user.csv.
+    public void deleteUser(User user) {
+
+        User userToRemove = null;
+
+        for (User currentUser : users) {
+            if (currentUser.getUserID()
+                    == user.getUserID()) {
+
+                userToRemove = currentUser;
+                break;
+            }
+        }
+
+        if (userToRemove == null) {
+            return;
+        }
+
+        users.remove(userToRemove);
+
+        try {
+            storeUsers();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public int getNextUserID() {
+
+        int maxID = 0;
+
+        for (User user : users) {
+            if (user.getUserID() > maxID) {
+                maxID = user.getUserID();
+            }
+        }
+
+        return maxID + 1;
+    }
+
+    public boolean emailExists(String email) {
+
+        if (email == null) {
+            return false;
+        }
+
+        String trimmedEmail = email.trim();
+
+        for (User user : users) {
+            if (user.getEmail()
+                    .equalsIgnoreCase(trimmedEmail)) {
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public User validateLogin(
+            String email,
+            String password) {
+
+        if (email == null || password == null) {
+            return null;
+        }
+
+        String trimmedEmail = email.trim();
+
+        for (User user : users) {
+
+            boolean emailMatches =
+                    user.getEmail()
+                            .equalsIgnoreCase(
+                                    trimmedEmail
+                            );
+
+            boolean passwordMatches =
+                    user.getPassword()
+                            .equals(password);
+
+            if (emailMatches && passwordMatches) {
+                return user;
+            }
+        }
+
+        return null;
+    }
+
+    private AccountType createAccountType(
+            String accountTypeName) {
+
+        switch (accountTypeName) {
+
+            case "Student":
+                return new AccountType(
+                        1,
+                        "Student",
+                        20.00
+                );
+
+            case "Faculty":
+                return new AccountType(
+                        2,
+                        "Faculty",
+                        30.00
+                );
+
+            case "Staff":
+                return new AccountType(
+                        3,
+                        "Staff",
+                        40.00
+                );
+
+            case "Partner":
+                return new AccountType(
+                        4,
+                        "Partner",
+                        50.00
+                );
+
+            default:
+                throw new IllegalArgumentException(
+                        "Invalid account type: "
+                                + accountTypeName
+                );
+        }
+    }
 }
-
-

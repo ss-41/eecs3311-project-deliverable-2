@@ -7,7 +7,7 @@ public class RoomController {
 
 
     private static final String FILE =
-            "src/csv_files/room.csv";
+            "csv_files/room.csv";
 
 
     public ArrayList<String[]> getAvailableRooms() {

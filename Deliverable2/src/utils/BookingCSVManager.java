@@ -11,7 +11,7 @@ import dataModels.Booking;
 public class BookingCSVManager {
 
 
-    private static final String FILE = "src/csv_files/booking.csv";
+    private static final String FILE = "csv_files/booking.csv";
 
 
 

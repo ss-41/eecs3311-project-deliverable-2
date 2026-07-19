@@ -6,6 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="/Users/trinityshiloh/Downloads/D2/csv-example/CSV-example/lib/javacsv.jar"/>
+	<classpathentry kind="lib" path="csv_files/javacsv.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -6,7 +6,7 @@ import dataModels.User;
 public class CSVUserManager {
 
     // Change this path if needed
-    private static final String FILE = "src/csv_files/user.csv";
+    private static final String FILE = "csv_files/user.csv";
 
     public static boolean saveUser(User user) {
 
