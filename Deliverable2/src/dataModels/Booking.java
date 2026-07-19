@@ -62,10 +62,11 @@ public class Booking implements Observer {
         this.bookingEndTime = end;
 
     }
+    
 
 
 
-    public int getBookingID() {
+	public int getBookingID() {
         return bookingID;
     }
 
@@ -141,6 +142,7 @@ public class Booking implements Observer {
 
         return
                 "Booking ID: " + bookingID +
+                "\nUser ID:" + userID +
                 "\nRoom ID: " + roomID +
                 "\nDeposit: $" + deposit +
                 "\nStatus: " + bookingStatus +

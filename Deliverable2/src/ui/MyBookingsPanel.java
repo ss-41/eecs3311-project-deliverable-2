@@ -210,6 +210,12 @@ public class MyBookingsPanel extends JPanel {
 
         database.singleton.Database db =
                 database.singleton.Database.getInstance();
+        try {
+			db.loadRooms();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         boolean found = false;
 
@@ -219,7 +225,7 @@ public class MyBookingsPanel extends JPanel {
 
                 String roomName = "Unknown";
 
-                for(dataModels.Room room : db.getRooms()) {
+                for(dataModels.Room room : db.rooms) {
 
                     if(room.getRoomID() == booking.getRoomID()) {
 

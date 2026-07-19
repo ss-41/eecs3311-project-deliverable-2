@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import controller.RoomController;
 import dataModels.Room;
+import database.singleton.Database;
 
 
 public class RoomManagementPanel extends JPanel {
@@ -284,9 +285,15 @@ public class RoomManagementPanel extends JPanel {
 
     private void loadRooms() {
 
-    	rooms = database.singleton.Database.getInstance().getRooms();
+    	Database db = Database.getInstance(); 
+    	try {
+			db.loadRooms();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
 
-        for(Room room : rooms) {
+        for(Room room : db.rooms) {
 
             roomBox.addItem(
                     room.getRoomNum()

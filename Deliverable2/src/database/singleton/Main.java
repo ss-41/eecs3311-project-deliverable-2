@@ -48,6 +48,7 @@ public class Main {
 		db2.loadBookings();
 		for(Booking b: db2.bookings){
 			System.out.println(b.toString());
+			System.out.println("");
 		}
 		
 		//delete the first booking and add another one into the database
@@ -59,6 +60,7 @@ public class Main {
 		System.out.println("UPDATED BOOKINGS IN DATABASE");
 		for(Booking b: db2.bookings){
 			System.out.println(b.toString());
+			System.out.println("");
 		}
 		
 		System.out.println("\n ------------------------------------------------------- \n");
