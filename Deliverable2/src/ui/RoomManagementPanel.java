@@ -126,7 +126,12 @@ public class RoomManagementPanel extends JPanel {
                     dataModels.RoomStatus.AVAILABLE
             );
 
-            updateStatus();
+            try {
+                Database.getInstance().storeRooms();
+                updateStatus(); 
+            } catch(Exception ex) {
+                ex.printStackTrace();
+            }
 
         });
 
@@ -141,10 +146,15 @@ public class RoomManagementPanel extends JPanel {
                 return;
 
             room.setStatus(
-            		dataModels.RoomStatus.AVAILABLE
+            		dataModels.RoomStatus.DISABLED
             );
 
-            updateStatus();
+            try {
+                Database.getInstance().storeRooms();
+                updateStatus(); 
+            } catch(Exception ex) {
+                ex.printStackTrace();
+            }
         });
 
 
@@ -161,7 +171,12 @@ public class RoomManagementPanel extends JPanel {
                     dataModels.RoomStatus.MAINTENANCE
             );
             
-            updateStatus();
+            try {
+                Database.getInstance().storeRooms();
+                updateStatus(); 
+            } catch(Exception ex) {
+                ex.printStackTrace();
+            }
         });
 
         back.addActionListener(e ->
@@ -264,7 +279,7 @@ public class RoomManagementPanel extends JPanel {
                 roomController.deleteRoom(room);
 
 
-                rooms.remove(room);
+                //rooms.remove(room);
 
 
                 roomBox.removeAllItems();
@@ -310,6 +325,7 @@ public class RoomManagementPanel extends JPanel {
 
     private Room getSelectedRoom() {
 
+    	Database db = Database.getInstance(); 
 
         int index =
                 roomBox.getSelectedIndex();
@@ -321,7 +337,7 @@ public class RoomManagementPanel extends JPanel {
 
 
 
-        return rooms.get(index);
+        return db.rooms.get(index);
 
     }
 
