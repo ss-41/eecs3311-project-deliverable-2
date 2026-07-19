@@ -1,5 +1,6 @@
 package dataModels;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import observer.Observer;
@@ -52,6 +53,60 @@ public class Room implements Subject{
 	public void attachObserver(Observer ob) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public int getRoomID() {
+		return roomID;
+	}
+
+	public void setRoomID(int roomID) {
+		this.roomID = roomID;
+	}
+
+	public String getRoomNum() {
+		return roomNum;
+	}
+
+	public void setRoomNum(String roomNum) {
+		this.roomNum = roomNum;
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
+	public String getBuilding() {
+		return building;
+	}
+
+	public void setBuilding(String building) {
+		this.building = building;
+	}
+
+	public RoomStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(RoomStatus status) {
+		this.status = status;
+	}
+
+	public ArrayList<Observer> getObservers() {
+		return observers;
+	}
+
+	public void setObservers(ArrayList<Observer> observers) {
+		this.observers = observers;
+	}
+	
+	@Override
+	public String toString() {
+		String stringRoomStatus = status.name();
+		return "Room ID: " + roomID + ", Room Num: "+ roomNum + ", Room Capacity: " + capacity + ", Room Building: " + building + ", Room Status: " + stringRoomStatus;
 	}
 
 }
