@@ -3,6 +3,7 @@ package dataModels;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import booking.state.ActiveState;
 import observer.Observer;
 
 
@@ -23,6 +24,12 @@ public class Booking implements Observer{
 		this.bookingEndTime = bookingEndTime;
 	}
 	
+	//temp constructor created by Trinity
+	public Booking(int bookingID2, int roomID2, double deposit2, ActiveState activeState, LocalDateTime start,
+			LocalDateTime end) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void editBooking() {
 		
 	}

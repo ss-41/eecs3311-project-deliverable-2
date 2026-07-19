@@ -18,9 +18,9 @@ import booking.state.BookingState;
 
 public class Database {
 	private static Database instance; 
-	private static String pathRooms = "src/csv_files/room.csv";
-	private static String pathBookings = "src/csv_files/booking.csv";
-	private static String pathUsers = "src/csv_files/user.csv";
+	private static String pathRooms = "csv_files/room.csv";
+	private static String pathBookings = "csv_files/booking.csv";
+	private static String pathUsers = "csv_files/user.csv";
 	
 	public ArrayList<User> users = new ArrayList<User>();
 	public ArrayList<Booking> bookings = new ArrayList<Booking>();
