@@ -2,11 +2,14 @@ package ui;
 
 import javax.swing.*;
 import java.awt.*;
+import controller.AccountController;
+import dataModels.User;
 
 public class LoginPanel extends JPanel {
 
 
     private MainFrame frame;
+    private AccountController accountController = new AccountController();
 
 
     public LoginPanel(MainFrame frame) {
@@ -57,18 +60,34 @@ public class LoginPanel extends JPanel {
         loginButton.addActionListener(e -> {
 
             String email = emailField.getText();
-            String password = new String(passwordField.getPassword());
 
-            if(email.isBlank() || password.isBlank()) {
+            String password =
+                    new String(passwordField.getPassword());
 
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Please enter your email and password."
-                );
-                return;
+
+            User user =
+                    accountController.login(
+                            email,
+                            password
+                    );
+
+
+            if(user != null) {
+
+            	frame.setCurrentUser(user);
+
+            	frame.getDashboardPanel().refreshUser(user);
+
+                JOptionPane.showMessageDialog(this,"Welcome " + user.getName());
+
+                frame.showPanel("DASHBOARD");
+
             }
+            else {
 
-            frame.showPanel("DASHBOARD");
+                JOptionPane.showMessageDialog(this,"Invalid email or password.");
+
+            }
 
         });
 
@@ -77,5 +96,7 @@ public class LoginPanel extends JPanel {
         frame.showRegister());
 
     }
+    
+    
 
 }

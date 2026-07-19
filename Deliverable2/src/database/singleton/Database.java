@@ -1,7 +1,6 @@
 package database.singleton;
 import java.util.ArrayList;
 
-
 import dataModels.Booking;
 import dataModels.BookingStatus;
 import dataModels.Room;

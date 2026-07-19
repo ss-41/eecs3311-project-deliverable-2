@@ -26,6 +26,26 @@ public class User {
 		return accountType;
 	}
 	
+	public int getUserID() {
+	    return userID;
+	}
+
+	public String getName() {
+	    return name;
+	}
+
+	public String getEmail() {
+	    return email;
+	}
+
+	public String getPassword() {
+	    return password;
+	}
+
+	public String getStudentOrOrgID() {
+	    return stud_OR_orgID;
+	}
+	
 	public boolean register() {
 		return false; 
 	}
