@@ -29,7 +29,15 @@ public class CheckIn implements Observer{
 
 	@Override
 	public void update(Room room) {
-		// TODO Auto-generated method stub
+		//if there was a badge scan, check in the user 
+		if (room.getLastEvent().equals("Badge Scan")) {
+			this.verified = room.isLastVerifiedBadge(); 
+			this.checkInTime = LocalDateTime.now();
+			String output = "[CheckIn] Reacting to Badge Scan On Room " + room.getRoomNum() + ". Verified = " + verified
+                    + ", userID = " + room.getLastUser().getUserID() + ", user Name = " + room.getLastUser().getName()
+                    + " at " + checkInTime;
+			System.out.println(output);
+		}
 		
 	}
 	
