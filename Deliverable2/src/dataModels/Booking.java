@@ -126,6 +126,7 @@ public class Booking implements Observer {
             if(room.isLastOccupied()){
                 bookingStatus = BookingStatus.COMPLETED;
             }
+            System.out.println("[Booking] Reacting to occupancy change on " + room.getRoomNum() + ". Occupied = " + room.isLastOccupied());
 
         }
 
