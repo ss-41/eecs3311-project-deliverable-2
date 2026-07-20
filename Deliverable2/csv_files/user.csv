@@ -1,8 +1,9 @@
 userID,name,email,password,stud_OR_orgID,accountType,admin
-8,Alice Chang,alice@university.edu,d82mw3rw1xaskvH,S508342756,Student,false
 1,Chief,chief@yorku.ca,admin123,COORD,Faculty,true
-2,Tom,tom@gmail.com,123,123,Student,false
-3,Sushi,qwe,qwe,1234,Faculty,true
-4,noob,noob@gmail.com,noob,1234567890,Student,false
-6,Jack Rey,jack.rey@gmail.com,B9cCfNshcJsupLMx0Q8u,S123234529,Student,false
-7,Emma Grace,emma.grace@gmail.com,sh6RkMbMQVyBPxEhJnc0,S1423254528,Student,false
+2,Tom Smith,tom@gmail.com,123,ST10001,Student,false
+3,Sushi,sushi@yorku.ca,qwe,F10001,Faculty,false
+4,Jack Wilson,jack@gmail.com,jack123,S20002,Student,false
+5,Sarah Lee,sarah.lee@yorku.ca,sarah123,F20002,Faculty,false
+6,Mark Brown,mark.brown@yorku.ca,mark123,STAFF001,Staff,false
+7,York Events,yorkevents@gmail.com,event123,ORG001,Partner,false
+8,Alice Chang,alice@university.edu,d82mw3rw1xaskv,S508342756,Student,false

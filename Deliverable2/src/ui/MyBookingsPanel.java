@@ -2,6 +2,8 @@ package ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import controller.BookingController;
@@ -109,14 +111,36 @@ public class MyBookingsPanel extends JPanel {
                 int bookingID =
                         Integer.parseInt(input);
 
+                String newEndInput =
+                        JOptionPane.showInputDialog(
+                                this,
+                                "Enter new end time (yyyy-MM-dd HH:mm):"
+                        );
+
+                if(newEndInput == null) return;
+
+
+                LocalDateTime newEndTime =
+                        LocalDateTime.parse(
+                                newEndInput,
+                                DateTimeFormatter.ofPattern(
+                                        "yyyy-MM-dd HH:mm"
+                                )
+                        );
+
+
                 boolean success =
-                        controller.extendBooking(bookingID);
+                        controller.extendBooking(
+                                bookingID,
+                                newEndTime
+                        );
+
 
                 if(success) {
 
                     JOptionPane.showMessageDialog(
                             this,
-                            "Booking extended by one hour."
+                            "Booking extended successfully."
                     );
 
                     loadBookings();

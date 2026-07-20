@@ -1,8 +1,11 @@
 roomID,roomNum,capacity,building,status
 2,A102,50,Accolade Building West,AVAILABLE
-3,B201,75,Scott Library,DISABLED
-4,B202,30,Lassonde Building,AVAILABLE
+3,B201,75,Scott Library,MAINTENANCE
+4,B202,30,Lassonde Building,DISABLED
 5,C105,25,Steacie Science & Engineering Library,AVAILABLE
 6,C210,20,Scott Library,CLOSED
-4953,E102,100,Accolade Building West,DISABLED
 7,D101,30,Ross Building,CLOSED
+8,E201,60,Accolade Building East,AVAILABLE
+9,L101,40,Lassonde Building,AVAILABLE
+10,R205,120,Ross Building,AVAILABLE
+53,E102,100,Accolade Building West,AVAILABLE
