@@ -264,7 +264,6 @@ public class MyBookingsPanel extends JPanel {
                 bookingArea.append(
                         "Booking ID: " + booking.getBookingID() + "\n"
                         + "Room: " + roomName + "\n"
-                        + "Deposit: $" + booking.getDeposit() + "\n"
                         + "Status: " + booking.getBookingStatus() + "\n"
                         + "Start: " + booking.getBookingTime() + "\n"
                         + "End: " + booking.getBookingEndTime() + "\n\n"

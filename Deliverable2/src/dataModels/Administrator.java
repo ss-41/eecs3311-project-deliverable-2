@@ -18,5 +18,6 @@ public class Administrator extends User {
                 stud_OR_orgID,
                 accountType
         );
+        setAdmin(true);
     }
 }
