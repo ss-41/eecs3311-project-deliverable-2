@@ -2,8 +2,10 @@
 
 ## About
 * This project redesigns and implements [eecs3311-project-deliverable](https://github.com/ss-41/eecs3311-project-deliverable) as a Java GUI-based application using six different design patterns
-* Updated class diagrams are given for the six design patterns - sub diagrams are used to illustate each of the six patterns
-* csv files are used to simulate the database
+* Updated class diagrams are given for the six design patterns - sub diagrams are used to illustrate each of the six patterns
+* CSV files are used to simulate the database
+* All diagrams are located in the Class_Diagrams folder
+* All CSV sample data files are located in the Deliverable2\csv_files folder
 
 ## Team Members
 * **Zahraa Al-Shakarchi** - [GitHub Profile](https://github.com/zshakar)
