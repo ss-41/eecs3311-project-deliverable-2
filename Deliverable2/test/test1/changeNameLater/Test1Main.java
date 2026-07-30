@@ -1,4 +1,4 @@
-package test1.changeName;
+package test1.changeNameLater;
 
 import org.junit.BeforeClass;
 
