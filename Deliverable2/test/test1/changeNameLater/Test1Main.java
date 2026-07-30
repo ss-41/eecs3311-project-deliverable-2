@@ -1,6 +1,8 @@
 package test1.changeNameLater;
 
-import org.junit.BeforeClass;
+import static org.junit.Assert.*;
+
+import org.junit.*;
 
 public class Test1Main {
 
@@ -8,9 +10,9 @@ public class Test1Main {
 	public static void setUpBeforeClass() throws Exception {
 	}
 
-//	@Test
-//	public void test() {
-//		fail("Not yet implemented");
-//	}
+	@Test
+	public void test() {
+		assertTrue(true);
+	}
 
 }
