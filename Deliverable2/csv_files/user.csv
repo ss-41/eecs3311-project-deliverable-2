@@ -1,11 +1,3 @@
 userID,name,email,password,stud_OR_orgID,accountType,admin
-1,Chief,chief@yorku.ca,admin123,COORD,Faculty,true
-2,Tom Smith,tom@gmail.com,123,ST10001,Student,false
-3,Sushi,sushi@yorku.ca,qwe,F10001,Faculty,false
-4,Jack Wilson,jack@gmail.com,jack123,S20002,Student,false
-5,Sarah Lee,sarah.lee@yorku.ca,sarah123,F20002,Faculty,false
-8,Alice Chang,alice@university.edu,d82mw3rw1xaskv,S508342756,Student,false
-6,Jack Rey,jack.rey@gmail.com,B9cCfNshcJsupLMx0Q8u,S123234529,Student,false
-7,Emma Grace,emma.grace@gmail.com,sh6RkMbMQVyBPxEhJnc0,S1423254528,Student,false
-9,Sam Smith,sam@gmail.com,sam123,123456789,Partner,false
-10,Admin,admin@gmail.com,admin123,123456,Staff,true
+1,Admin,admin@test.com,123,EMP1,Staff,true
+2,John,john@test.com,1234,1000,Student,false
