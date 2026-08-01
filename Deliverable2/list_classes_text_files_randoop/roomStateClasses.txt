@@ -1,0 +1,5 @@
+room.state.AvailableState
+room.state.DisabledState
+room.state.MaintenanceState
+room.state.OccupiedState
+room.state.RoomContext

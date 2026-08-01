@@ -1,0 +1,4 @@
+payment.strategy.CreditCard
+payment.strategy.DebitCard
+payment.strategy.InstitutionalBilling
+payment.strategy.Payment
