@@ -11,6 +11,8 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="src" path="randoop_test"/>
+	<classpathentry kind="src" path="ai_test"/>
 	<classpathentry kind="lib" path="csv_files/javacsv.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>

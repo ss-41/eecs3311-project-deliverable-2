@@ -1,10 +1,11 @@
-package test1.changeNameLater;
+package observer;
 
 import static org.junit.Assert.*;
 
-import org.junit.*;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-public class Test1Main {
+public class ObserverTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -12,7 +13,7 @@ public class Test1Main {
 
 	@Test
 	public void test() {
-		assertTrue(true);
+		fail("Not yet implemented");
 	}
 
 }
