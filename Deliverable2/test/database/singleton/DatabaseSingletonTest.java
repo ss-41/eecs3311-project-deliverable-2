@@ -1,10 +1,10 @@
-package observer;
+package database.singleton;
 
 import static org.junit.Assert.*;
 
 import org.junit.*;
 
-public class ObserverTest {
+public class DatabaseSingletonTest {
 
 	@Before
 	public void setUp() throws Exception {

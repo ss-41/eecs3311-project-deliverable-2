@@ -1,10 +1,10 @@
-package observer;
+package dataModels.Delete_if_not_needed;
 
 import static org.junit.Assert.*;
 
 import org.junit.*;
 
-public class ObserverTest {
+public class DataModelsTest {
 
 	@Before
 	public void setUp() throws Exception {
@@ -14,5 +14,4 @@ public class ObserverTest {
 	public void test() {
 		fail("Not yet implemented");
 	}
-
 }

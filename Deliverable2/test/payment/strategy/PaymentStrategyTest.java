@@ -2,13 +2,12 @@ package payment.strategy;
 
 import static org.junit.Assert.*;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
 public class PaymentStrategyTest {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 	}
 
 	@Test

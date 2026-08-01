@@ -1,10 +1,10 @@
-package observer;
+package controller;
 
 import static org.junit.Assert.*;
 
 import org.junit.*;
 
-public class ObserverTest {
+public class ControllerFacadeTest {
 
 	@Before
 	public void setUp() throws Exception {
