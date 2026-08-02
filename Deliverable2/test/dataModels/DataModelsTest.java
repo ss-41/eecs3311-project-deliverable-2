@@ -1,4 +1,4 @@
-package dataModels.Delete_if_not_needed;
+package dataModels;
 
 import static org.junit.Assert.*;
 
