@@ -1,1 +1,2 @@
 bookingID,userID,roomID,deposit,bookingStatus,bookingTime,bookingEndTime
+7,2,2,20.0,EXPIRED,2026-08-01 20:42,2026-06-21 16:00

@@ -371,7 +371,7 @@ public class Database {
                         readerUser.get("stud_OR_orgID");
 
                 String accountTypeName =
-                        readerUser.get("accountType");
+                        readerUser.get("accountType"); 
 
                 AccountType accountType =
                         createAccountType(accountTypeName);
