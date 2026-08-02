@@ -83,7 +83,7 @@ public class GenerateAccountFactoryTest {
 	}
 	
 	@Test
-	public void testUserIsAdmin() {
+	public void testUserIsAdmin1() {
 		User user = GenerateAccountFactory.createUser(100, "James", "james123@yorku.ca", 
 		"123", "2215", accountType);
 
