@@ -83,21 +83,21 @@ public class GenerateAccountFactoryTest {
 	}
 	
 	@Test
-	public void testUserIsAdmin1() {
+	public void testChangeUserIsAdmin() {
 		User user = GenerateAccountFactory.createUser(100, "James", "james123@yorku.ca", 
-		"123", "2215", accountType);
+				"123", "2215", accountType);
 
 		user.setAdmin(true);
 		assertTrue(user.isAdmin());
 	}
 
 	@Test
-	public void testUserIsAdmin2() {
-		User user = GenerateAccountFactory.createUser(100, "James", "james123@yorku.ca", 
-		"123", "2215", accountType);
+	public void testChangeAdministratorIsAdmin() {
+		Administrator administrator = GenerateAccountFactory.createAdministrator(101, "Sarah", 
+				"sarah123@yorku.ca", "999", "8921", accountType2);
 
-		user.setAdmin(false);
-		assertFalse(user.isAdmin());
+		administrator.setAdmin(false);
+		assertFalse(administrator.isAdmin());
 	}
-
+	
 }
