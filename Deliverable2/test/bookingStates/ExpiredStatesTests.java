@@ -1,4 +1,4 @@
-package states;
+package bookingStates;
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;

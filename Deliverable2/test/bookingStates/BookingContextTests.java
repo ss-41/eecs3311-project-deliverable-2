@@ -1,4 +1,4 @@
-package states;
+package bookingStates;
 
 import org.junit.*;
 
@@ -54,10 +54,6 @@ public class BookingContextTests {
 	@Test
 	public void testConstructorInitializesActiveState() {
 	    Assert.assertTrue(context.getState() instanceof ActiveState);
-	}
-	@Test
-	public void testConstructorInitializesCancelledState() {
-	    Assert.assertTrue(context.getState() instanceof CancelledState);
 	}
 	
 	@Test
@@ -126,11 +122,12 @@ public class BookingContextTests {
 	public void testMutipleStateChanges() {
 		DemoState stateOne = new DemoState();
         DemoState stateTwo = new DemoState();
-        
+
+        context.setState(stateOne);
+        Assert.assertSame(stateOne, context.getState());
+
         context.setState(stateTwo);
-        context.setState(stateTwo);
-        
-        Assert.assertTrue(stateTwo == context.getState());
+        Assert.assertSame(stateTwo, context.getState());
 	}
 	
 	@Test
@@ -138,13 +135,25 @@ public class BookingContextTests {
 		DemoState stateOne = new DemoState();
         DemoState stateTwo = new DemoState();
         
+        context.setState(stateOne);
+        context.request();
+
         context.setState(stateTwo);
         context.request();
-        
-        context.setState(stateTwo);
-        context.request();
-        
+
         Assert.assertTrue(stateOne.requestCalled);
         Assert.assertTrue(stateTwo.requestCalled);
+	}
+	
+	@Test
+	public void testRequestOnlyCallsCurrentState() {
+	    DemoState stateOne = new DemoState();
+	    DemoState stateTwo = new DemoState();
+
+	    context.setState(stateOne);
+	    context.request();
+
+	    Assert.assertTrue(stateOne.requestCalled);
+	    Assert.assertFalse(stateTwo.requestCalled);
 	}
 }

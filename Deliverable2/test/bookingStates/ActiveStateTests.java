@@ -1,4 +1,4 @@
-package states;
+package bookingStates;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -15,7 +15,7 @@ import booking.state.ExpiredState;
 public class ActiveStateTests {
 	
 	
-	private ActiveState state;
+	private ActiveState state;	
 	private BookingContext context;
 	
 	@Before

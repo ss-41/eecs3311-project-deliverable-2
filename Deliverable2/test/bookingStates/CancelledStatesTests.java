@@ -1,4 +1,4 @@
-package states;
+package bookingStates;
 
 import static org.junit.Assert.*;
 
@@ -13,7 +13,6 @@ import booking.state.*;
 
 public class CancelledStatesTests {
 
-	
 	private CancelledState state;
 	private BookingContext context;
 	
