@@ -1,5 +1,7 @@
 userID,name,email,password,stud_OR_orgID,accountType,admin
+1,Chloe Warren,cw@gmail.com,Ranger921,S5959357371,Student,true
 108,Amira Cole,a_cole@gmail.com,B9cCfrwshdssupLMKfQ8u,S323254528,Staff,false
 108,Amira Cole,a_cole@gmail.com,B9cCfrwshdssupLMKfQ8u,S323254528,Staff,false
 106,Bryan Rogers,b_rogers@gmail.com,B9cCfNshcJsupLMx0Q8u,P123274529,Partner,false
 108,Lee Coleman,lee_coleman@gmail.com,N9fdsfrwshdssurLaKfP8u,S523255526,Staff,false
+109,Chloe Warren,cw@gmail.com,Ranger921,S5959357371,Student,true
