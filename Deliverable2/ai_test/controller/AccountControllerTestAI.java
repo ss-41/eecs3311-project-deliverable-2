@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import database.singleton.Database;
 
-public class AccountControllerTest {
+public class AccountControllerTestAI {
 
     private AccountController controller;
 

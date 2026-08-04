@@ -12,7 +12,7 @@ import dataModels.Room;
 import dataModels.RoomStatus;
 import database.singleton.Database;
 
-public class BookingControllerTest {
+public class BookingControllerTestAI {
 
     private BookingController controller;
 

@@ -8,7 +8,7 @@ import dataModels.AccountType;
 import dataModels.Administrator;
 import dataModels.User;
 
-public class GenerateAccountFactoryTest {
+public class GenerateAccountFactoryTestAI {
 
     @Test
     public void testCreateUser() {

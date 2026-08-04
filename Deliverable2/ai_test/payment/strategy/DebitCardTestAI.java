@@ -3,7 +3,7 @@ package payment.strategy;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class DebitCardTest {
+public class DebitCardTestAI {
 
     @Test
     public void testPayPositiveAmount() {

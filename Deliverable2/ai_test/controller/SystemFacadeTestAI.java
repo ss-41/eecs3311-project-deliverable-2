@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import database.singleton.Database;
 
-public class SystemFacadeTest {
+public class SystemFacadeTestAI {
 
     private SystemFacade facade;
 
