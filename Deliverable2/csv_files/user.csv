@@ -1,3 +1,4 @@
 userID,name,email,password,stud_OR_orgID,accountType,admin
 1,Admin,admin@test.com,123,EMP1,Staff,true
 2,John,john@test.com,1234,1000,Student,false
+3,Chief,Chief@yorku.ca,admin123,Host01,Staff,true
